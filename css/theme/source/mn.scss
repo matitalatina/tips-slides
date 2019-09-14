@@ -1,0 +1,67 @@
+/**
+ * Solarized Dark theme for reveal.js.
+ * Author: Achim Staebler
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+
+// Include theme-specific fonts
+@import url(../../lib/font/league-gothic/source-sans-pro.css);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+
+/**
+ * Solarized colors by Ethan Schoonover
+ */
+html * {
+	color-profile: sRGB;
+	rendering-intent: auto;
+}
+
+// Solarized colors
+$base03:    #303030;
+$base02:    #3a3a3a;
+$base01:    #757575;
+$base00:    #838485;
+$base0:     #949494;
+$base1:     #a8a8a8;
+$base2:     #eeeeee;
+$base3:     #fcfcfc;
+$yellow:    #b58900;
+$orange:    #cb4b16;
+$red:       #dc322f;
+$redDark:   #3b0f0e;
+$magenta:   #d33682;
+$violet:    #6c71c4;
+$blue:      #268bd2;
+$cyan:      #2aa198;
+$green:     #859900;
+$greenDark: #082e00;
+
+// Override theme settings (see ../template/settings.scss)
+$mainColor: $base1;
+$headingColor: $base2;
+$headingTextShadow: none;
+$backgroundColor: $base03;
+$linkColor: $red;
+$linkColorHover: lighten( $linkColor, 20% );
+$selectionBackgroundColor: $orange;
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+.reveal {
+  .good-color {
+    color: $green;
+  }
+
+  .bad-color {
+    color: $red;
+  }
+}
