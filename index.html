@@ -1,49 +1,135 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+  <title>reveal.js</title>
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/mn.css">
+  <link rel="stylesheet" href="css/theme/code-good.css">
+  <link rel="stylesheet" href="css/theme/code-bad.css">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="lib/css/monokai.css">
 
-		<script src="js/reveal.js"></script>
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+</head>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
-				]
-			});
-		</script>
-	</body>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <h1>Write code for <strong class="good-color">humans</strong>!</h1>
+        <h2>Not for <span class="bad-color">machines</span></h2>
+      </section>
+      <section data-background="#082e00">
+        <h3>Write declarative</h3>
+        <h4><strong class="good-color">Humans</strong> prefer this</h4>
+        <pre>
+          <code class="hljs typescript code-good" data-trim>
+            const kmOfItalianDrivers = users
+              .filter(u => u.country === 'ITALY' && 
+                           u.hasDriverLicence &&
+                           u.age >= 18
+              )
+              .flatMap(u => u.cars)
+              .reduce((totalKm, car) => totalKm + car.km, 0);
+          </code>
+          </pre>
+      </section>
+      <section data-background="#3b0f0e">
+          <h3>Avoid imperative</h3>
+          <h4><strong class="bad-color">Machines</strong> prefer this</h4>
+          <pre>
+            <code class="hljs typescript code-bad" data-trim>
+              let kmOfItalianDrivers = 0;
+
+              for (let i = 0; i < users.length; i++) {
+                if (users[i].country === 'ITALY' &&
+                    users[i].hasDriverLicence &&
+                    users[i].age >= 18) {
+                      for (let j = 0; j < users[i].cars.length; j++) {
+                        kmOfItalianDrivers += users[i].cars[j].km;
+                      }
+                }
+              }
+            
+              return kmOfItalianDrivers;
+            </code>
+            </pre>
+        </section>
+        <section data-background="#082e00">
+            <h3>Why <strong class="good-color">humans</strong> prefer <br>declarative programming</h3>
+            <ul>
+              <li>It focuses on <strong>what</strong> you want to achieve</li>
+              <li>Fewer lines of code</li>
+              <li>It encourages code reusability (composing map, flatMap, filter, reduce etc.)</li>
+              <li>It hides implementation details</li>
+            </ul>
+        </section>
+        <section data-background="#3b0f0e">
+            <h3>Why <strong class="bad-color">machines</strong> prefer <br>imperative programming</h3>
+            <ul>
+              <li>It focuses on <strong>how</strong> you want to achieve</li>
+              <li>You are writing what the machine should do</li>
+              <li>Better performance</li>
+            </ul>
+        </section>
+        <section>
+            <h3><strong class="bad-color">Hardware</strong> is cheap,<br>
+              <strong class="good-color">developers</strong> are expensive</h3>
+            <ul>
+              <li>It's better to save developers time instead of 1ms for a machine</li>
+              <li>You should help your team building things quickly instead of helping machines</li>
+            </ul>
+        </section>
+        <section>
+            <h3>So write <strong class="good-color">declarative</strong> code</h3>
+            <ul>
+              <li>You'll write <strong class="good-color">human-friendly</strong> code</li>
+              <li>Your code will be easier to understand and easier to change</li>
+              <li>Your colleagues will appreciate!</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Keep in touch</h2>
+            <p><a href="https://www.linkedin.com/in/mattian/" target="_blank"><i class="fa fa-linkedin-square"></i> mattian</a></p>
+            <p><a href="https://github.com/matitalatina/" target="_blank"><i class="fa fa-github"></i> matitalatina</a></p>
+            <p><a href="https://www.mattianatali.it" target="_blank"><i class="fa fa-link"></i> www.mattianatali.it</a></p>
+        </section>
+    </div>
+  </div>
+
+  <script src="js/reveal.js"></script>
+
+  <script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+      width: 960,
+	    height: 700,
+      dependencies: [
+        { src: 'plugin/markdown/marked.js' },
+        { src: 'plugin/markdown/markdown.js' },
+        { src: 'plugin/notes/notes.js', async: true },
+        { src: 'plugin/highlight/highlight.js', async: true }
+      ]
+    });
+    Reveal.configure({ pdfMaxPagesPerSlide: 1 });
+  </script>
+</body>
+
 </html>
