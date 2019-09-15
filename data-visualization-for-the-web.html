@@ -1,0 +1,1263 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Data visualization for the Web</title>
+
+  <meta name="description" content="How to display data in a fancy way">
+  <meta name="author" content="Mattia Natali">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta property="og:title" content="Data visualization for the Web" />
+  <meta property="og:description" content="How to display data in a fancy way" />
+  <meta property="og:url" content="https://slides.mattianatali.it/data-visualization-for-the-web.html" />
+  <meta property="og:image" content="assets/data-vis/img/talk-preview.jpg" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/wavein.css" id="theme">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css" integrity="sha256-a2tobsqlbgLsWs7ZVUGgP5IvWZsx8bTNQpzsqCSm5mk=" crossorigin="anonymous" />
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+  <!-- Code syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/monokai.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+
+  <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <section>
+        <h1>Data visualization for the Web</h1>
+        <h3>How to display data in a fancy way</h3>
+        <p style="margin-bottom: 0;">
+          <small>Created by <strong>Mattia Natali</strong>
+          </small>
+        </p>
+        <div class="icon-chooser"><small><a href="https://linkedin.com/in/mattian" target="_blank"><i class="fa fa-linkedin"></i></a> <a href="https://github.com/matitalatina" target="_blank"><i class="fa fa-github"></i></a></small></div>
+      </section>
+      <section>
+        <section>
+          <h1>Why is it important?</h1>
+          <p>Use case: superhero choice</p>
+        </section>
+
+        <section>
+          <pre style="font-size: 0.5em">
+Superhero, Strenght, Defense, Speed, Intelligence, Wisdom, Luck
+Mattia, 2, 3, 2, 2, 1, 5
+Spiderman, 7, 8, 6, 9, 6, 8
+Flash, 9, 8, 10, 7, 8, 6
+Batman, 10, 8, 6, 7, 5, 7
+          </pre>
+        </section>
+
+        <section>
+          <table style="font-size: 0.7em">
+            <thead>
+              <tr>
+                <th>
+                  Superhero
+                </th>
+                <th>
+                  Strenght
+                </th>
+                <th>
+                  Defense
+                </th>
+                <th>
+                  Speed
+                </th>
+                <th>
+                  Intelligence
+                </th>
+                <th>
+                  Wisdom
+                </th>
+                <th>
+                  Luck
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  Mattia
+                </td>
+                <td>
+                  2/10
+                </td>
+                <td>
+                  3/10
+                </td>
+                <td>
+                  2/10
+                </td>
+                <td>
+                  2/10
+                </td>
+                <td>
+                  1/10
+                </td>
+                <td>
+                  5/10
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Spiderman
+                </td>
+                <td>
+                  7/10
+                </td>
+                <td>
+                  8/10
+                </td>
+                <td>
+                  6/10
+                </td>
+                <td>
+                  9/10
+                </td>
+                <td>
+                  6/10
+                </td>
+                <td>
+                  8/10
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Flash
+                </td>
+                <td>
+                  9/10
+                </td>
+                <td>
+                  8/10
+                </td>
+                <td>
+                  10/10
+                </td>
+                <td>
+                  7/10
+                </td>
+                <td>
+                  8/10
+                </td>
+                <td>
+                  6/10
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Batman
+                </td>
+                <td>
+                  10/10
+                </td>
+                <td>
+                  8/10
+                </td>
+                <td>
+                  6/10
+                </td>
+                <td>
+                  7/10
+                </td>
+                <td>
+                  5/10
+                </td>
+                <td>
+                  7/10
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section>
+          <canvas data-chart="radar">
+            Mattia, 2, 4, 3, 2, 1, 5
+            Spiderman, 7, 8, 6, 9, 6, 8
+            Flash, 9, 8, 10, 7, 8, 6
+            Batman, 10, 8, 6, 7, 5, 7
+            <!-- 
+{
+ "data": {
+  "labels": ["Strenght"," Defense"," Speed", "Intelligence", "Wisdom", "Luck"]
+ }
+}
+-->
+          </canvas>
+        </section>
+        <section>
+          <h2><i class="fa fa-users"></i> don't like raw numbers</h2>
+          <h3>Visual data representation is</h3>
+          <ul>
+            <li>more catchy</li>
+            <li>quicker to read</li>
+            <li>more intuitive</li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <h2>Choose <strong class="warning">wisely</strong> how to show your data</h2>
+        <ul>
+          <li>some fit in a <strong>plot</strong> (chart, pie, radar, scatter plot)</li>
+          <li>some can be changed with <strong>icons</strong> (<i class="fa fa-car"></i> <i class="fa fa-bus"></i> <i class="fa fa-bicycle"></i> <i class="fa fa-ship"></i>)</li>
+          <li>some with <strong>custom views</strong></li>
+          <li>...others <strong>keep them unchanged</strong></li>
+        </ul>
+      </section>
+      <section>
+        <img data-src="assets/data-vis/img/the-wheel.png">
+      </section>
+      <section>
+        <section>
+          <h1>Charts</h1>
+          <h2><span class=""><i class="fa fa-bar-chart spaced"></i> <i class="fa fa-pie-chart spaced"></i> <i class="fa fa-area-chart spaced"></i></span></h2>
+        </section>
+        <section>
+          <h2>When to use</h2>
+          <ul>
+            <li>Big amount of data</li>
+            <li>We are going to add a table</li>
+            <li>We want to compare and analyze data</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Chart types</h2>
+          <p>I'm using <a href="http://www.chartjs.org/" target="_blank">chart.js</a></p>
+        </section>
+        <section>
+          <h2>Line chart</h2>
+          <canvas data-chart="line">
+            Months, January, February, March, April, May, June, July
+            Mattia, 65, 59, 80, 81, 56, 55, 40
+            Giovanni, 28, 48, 40, 19, 86, 27, 90
+            Luca, 23, 54, 27, 70, 35, 26, 44
+            Fabio, 84, 60, 3, 27, 36, 82, 60
+          </canvas>
+        </section>
+        <section>
+          <h2>Bar chart</h2>
+          <canvas data-chart="bar">
+            Months, January, February, March, April, May, June, July
+            Mattia, 65, 59, 80, 81, 56, 55, 40
+            Giovanni, 28, 48, 40, 19, 86, 27, 90
+            Luca, 23, 54, 27, 70, 35, 26, 44
+            Fabio, 84, 60, 3, 27, 36, 82, 60
+          </canvas>
+        </section>
+        <section>
+          <h2>Radar</h2>
+          <canvas data-chart="radar">
+            Months, January, February, March, April, May, June, July
+            Mattia, 65, 59, 80, 81, 56, 55, 40
+            Giovanni, 28, 48, 40, 19, 86, 27, 90
+            Luca, 23, 54, 27, 70, 35, 26, 44
+            Fabio, 84, 60, 3, 27, 36, 82, 60
+          </canvas>
+        </section>
+        <section>
+          <h2>Pie</h2>
+          <canvas data-chart="pie">
+            Users, Mattia, Giovanni, Luca, Fabio
+            First dataset, 65, 28, 23, 84
+          </canvas>
+        </section>
+        <section>
+          <h2>Pie Advanced</h2>
+          <canvas data-chart="pie">
+            Users, Mattia, Giovanni, Luca, Fabio
+            1, 65, 28, 23, 84
+            2, 59, 48, 54, 60
+            3, 80, 40, 27, 3
+            4, 81, 19, 70, 27
+          </canvas>
+        </section>
+        <section>
+          <h2>Polar</h2>
+          <img data-src="assets/data-vis/img/polar.png" style="max-width: 400px">
+        </section>
+        <section>
+          <h2><a href="http://www.chartjs.org/" target="_blank">Chart.js</a></h2>
+          <ul>
+            <li>Free, open source</li>
+            <li>6 chart types: line, bar, radar, polar, pie/doughnut</li>
+            <li>Based on <code>canvas</code>
+          </ul>
+        </section>
+        <section>
+          <h2><a href="http://nvd3.org/">NVD3.js</a></h2>
+          <ul>
+            <li>Free, open source</li>
+            <li>It uses D3.js</li>
+            <li>Based on <code>SVG</code>
+          </ul>
+        </section>
+        <section>
+          <h2><a href="http://nvd3.org/">NVD3.js</a></h2>
+          <iframe data-src="http://nvd3.org/examples/index.html" style="width: 100%;height:50vh"></iframe>
+        </section>
+        <section>
+          <img data-src="assets/data-vis/img/TeamDataLog.jpg" />
+        </section>
+        <section>
+          <h2><a href="http://www.highcharts.com/">HighCharts</a></h2>
+          <ul>
+            <li>Free for non-commercial use, open source</li>
+            <li>Gazillions of chart types</li>
+            <li>Highmaps and highstock</li>
+            <li>Based on <code>SVG</code>
+          </ul>
+        </section>
+        <section>
+          <h2><a href="http://www.highcharts.com/">HighCharts</a></h2>
+          <iframe data-src="http://www.highcharts.com/demo" style="width: 100%;height:50vh"></iframe>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h1>Icons</h1>
+          <h2>I <strong><i class="fa fa-heart animated infinite pulse"></i></strong> them!</h2>
+        </section>
+        <section>
+          <h2>When to use</h2>
+          <ul>
+            <li>Input forms: <span class="color-4"><i class="fa fa-map-marker"></i> <i class="fa fa-phone"></i> <i class="fa fa-envelope"></i> <i class="fa fa-calendar"></i> </span></li>
+            <li>Enumerations: <span class="color-4"><i class="fa fa-car"></i> <i class="fa fa-train"></i> <i class="fa fa-bus"></i> <i class="fa fa-bicycle"></i> <i class="fa fa-ship"></i></span><span class="color-2"><i class="fa fa-apple"></i> <i class="fa fa-android"></i> <i class="fa fa-windows"></i></span></li>
+            <li>External links: <span class="color-4"><i class="fa fa-facebook"></i> <i class="fa fa-twitter"></i> <i class="fa fa-github"></i></span></li>
+          </ul>
+        </section>
+        <section>
+          <h2>Scalable vector icons</h2>
+          <ul>
+            <li>Easy to change color: <i class="fa fa-warning color-change"></i></li>
+            <li>Change size without quality loss: <i class="fa fa-thumbs-o-up"></i> <i class="fa fa-thumbs-o-up fa-2x"></i> <i class="fa fa-thumbs-o-up fa-5x"></i></li>
+            <li>Font pack: one HTML call to fetch them all</li>
+          </ul>
+        </section>
+        <section>
+          <h2><a href="https://fortawesome.github.io">Font Awesome</a></h2>
+          <img data-src="assets/data-vis/img/font-awesome.png">
+        </section>
+        <section>
+          <h2><a href="https://icomoon.io/">IcoMoon</a></h2>
+          <img data-src="assets/data-vis/img/icomoon.png">
+        </section>
+        <section>
+          <h2><a href="http://ionicons.com/">ionicons</a></h2>
+          <img data-src="assets/data-vis/img/ionicons.png">
+        </section>
+        <section>
+          <h2><i class="fa fa-code"></i> <a href="https://fortawesome.github.io">Font Awesome</a></h2>
+          <p>
+            <i class="fa fa-camera"></i>
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-camera fa-stack-1x" style="line-height: 2em;"></i>
+              <i class="fa fa-ban fa-stack-2x color-2"></i>
+            </span>
+            <i class="fa fa-cog fa-spin"></i>
+            <i class="fa fa-diamond fa-3x"></i>
+          </p>
+          <pre><code><i class="fa fa-camera"></i>
+<span class="fa-stack fa-lg">
+  <i class="fa fa-camera fa-stack-1x"></i>
+  <i class="fa fa-ban fa-stack-2x color-2"></i>
+</span>
+<i class="fa fa-cog fa-spin"></i>
+<i class="fa fa-diamond fa-3x"></i></code></pre>
+        </section>
+        <section>
+          <h2><i class="fa fa-code"></i> <a href="https://fortawesome.github.io" target="_blank">Font Awesome</a> + <a href="https://fortawesome.github.io" target="_blank">animate.css</a></h2>
+          <p>
+            <i class="fa fa-ambulance custom-car"></i>
+            <i class="fa fa-camera animated flash infinite"></i>
+            <i class="fa fa-heart animated pulse infinite"></i>
+            <span class="custom-ball"><i class="fa fa-futbol-o"></i></span>
+            <i class="fa fa-bell animated swing infinite"></i>
+          </p>
+          <pre><code><!-- HTML -->
+<i class="fa fa-ambulance custom-car"></i>
+<i class="fa fa-camera animated flash infinite"></i>
+<i class="fa fa-heart animated pulse infinite"></i>
+<span class="custom-ball"><i class="fa fa-futbol-o"></i></span>
+<i class="fa fa-bell animated swing infinite"></i></code></pre>
+<pre><code>//CSS
+.custom-car {
+  animation: slideOutLeft 1s infinite alternate;
+}
+.custom-ball {
+  animation: bounce 1s infinite;
+  display: inline-block;
+}
+.custom-ball i {
+  animation: rubberBand 1s 0.2s infinite ease-out;
+}</code></pre>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>Custom views</h1>
+        </section>
+        <section>
+          <h2>When to use</h2>
+          <ul>
+            <li>Plot libraries don't satisfy us</li>
+            <li>We have a new way to display data</li>
+            <li>Nobody else write something similar to our idea</li>
+            <li>We really want to reinvent the wheel</li>
+          </ul>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h1>D3.js</h1>
+          <ul>
+            <li>Binds our data to page DOM</li>
+            <li>Uses web standards (HTML, SVG, CSS), no proprietary framework</li>
+            <li>Data driven approach</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Pure Javascript Vs D3.js</h2>
+          <pre><code>var paragraphs = document.getElementsByTagName("p");
+for (var i = 0; i < paragraphs.length; i++) {
+  var paragraph = paragraphs.item(i);
+  paragraph.style.setProperty("width", data[i]) + "px";
+}</code></pre>
+<pre><code >d3.selectAll("p")
+  .data(data)
+  .style("witdh", function(d) { return d + "px"; });</code></pre>
+        </section>
+        <section>
+          <h2>Steps</h2>
+          <ol>
+            <li><strong>Select <code>element frame</code></strong> you work on it</li>
+            <li><strong>Select <code>elements</code></strong> inside your <code>frame</code></li>
+            <li><strong>Bind data</strong> on selected elements</li>
+            <li><strong>Style them</strong> based on linked data (use scale)</li>
+            <li><strong>Define <code>enter</code> / <code>exit</code></strong> methods</li>
+          </ol>
+        </section>
+        <section>
+          <h4>1.Select <code>element frame</code></h4>
+          <div id="d3-frame-1" class="el-selected">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </div>
+          <pre><code><div id="d3-frame">
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+</div></code></pre>
+          <pre><code>var myData = [10, 25, 40];
+
+d3
+  .select('#d3-frame')</code></pre>
+        </section>
+        <section>
+          <h4>2.Select <code>elements</code></h4>
+          <div id="d3-frame-2">
+            <span class="el-selected"><i class="fa fa-star"></i></span>
+            <span class="el-selected"><i class="fa fa-star"></i></span>
+            <span class="el-selected"><i class="fa fa-star"></i></span>
+          </div>
+          <pre><code><div id="d3-frame">
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+</div></code></pre>
+          <pre><code>var myData = [10, 25, 40];
+
+d3
+  .select('#d3-frame')
+  .selectAll('i')</code></pre>
+        </section>
+        <section>
+          <h4>3.Bind data</h4>
+          <div id="d3-frame-3">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </div>
+          <pre><code><div id="d3-frame">
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+</div></code></pre>
+          <pre><code>var myData = [10, 25, 40];
+
+d3
+  .select('#d3-frame')
+  .selectAll('i')
+  .data(myData)</code></pre>
+        </section>
+        <section data-state="d3-step-4">
+          <h4>4.Style them</h4>
+          <div id="d3-frame-4">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </div>
+          <pre><code><div id="d3-frame">
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+  <i class="fa fa-star"></i>
+</div></code></pre>
+          <pre><code>var myData = [10, 25, 40];
+
+d3
+  .select('#d3-frame')
+  .selectAll('i')
+  .data(myData)
+  .style('font-size', function(d) {return d + 'px';})</code></pre>
+        </section>
+          <section data-state="d3-step-4b">
+          <h4>4b.Style them with <strong>scales</strong></h4>
+          <div id="d3-frame-4b">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </div>
+          <pre><code>var myData = [10, 25, 40];
+            
+var colorScale = d3.scale.linear()
+        .domain([d3.min(myData), d3.max(myData)])
+        .rangeRound([0, 255]);
+        
+d3
+  .select('#d3-frame')
+  .selectAll('i')
+  .data(myData)
+  .style('font-size', function(d) {return d + 'px';})
+  .style('color', function(d) {
+    return 'rgb(0, ' + colorScale(d) + ', 0)';
+  });</code></pre>
+        </section>
+        <section data-state="d3-step-5">
+          <h4>5. Define <code>enter</code> / <code>exit</code> methods</h4>
+          <div id="d3-frame-5">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </div>
+          <pre><code>var myData = [10, 25, 40, 5, 50, 20, 16, 18, 60, 55, 20];
+var colorScale = d3.scale.linear()
+  .domain([d3.min(myData), d3.max(myData)])
+  .rangeRound([0, 255]);
+
+var stars = d3
+  .select('#d3-frame')
+  .selectAll('i')
+  .data(myData);
+
+stars.enter()
+  .append('i')
+  .attr('class', 'fa fa-star');
+  
+stars.exit()
+   .remove();
+
+stars
+  .style('font-size', function(d) {return d + 'px';})
+  .style('color', function(d) {
+    return 'rgb(0, ' + colorScale(d) + ', 0)'; 
+  });</code></pre>
+        </section>
+        <section data-state="audio-live">
+          <h3>Now you can do this!</h3>
+          <audio id="audio-live-src" controls>
+            <source id="audio-live" type="audio/mpeg" data-src="assets/data-vis/audio/Fade.m4a">
+          </audio>
+          <div id="test-vis" style="overflow: show; height: 400px"></div>
+          <small style="font-size: 13px"><a href="https://www.youtube.com/watch?v=bM7SZ5SBzyY" target="_blank"><i class="fa fa-music"> Alan Walker - Fade</i></a></small>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h3>Audience check</h3>
+          <img data-src="assets/data-vis/img/cat_train.gif">
+        </section>
+      </section>
+      <section>
+        <section>
+          <h3>The journey continues</h3>
+          <img data-src="assets/data-vis/img/moar_cat2.jpg">
+        </section>
+      </section>
+      <section>
+        <section>
+          <h2>D3 Transitions!</h2>
+        </section>
+        <section data-state="trans-1">
+          <h4>w/o transitions</h4>
+          <small>(Click on the ball to change the linked data)</small>
+          <div id="trans-id-1" class="ball-canvas">
+            <i class="fa fa-futbol-o"></i>
+          </div>
+          <ul>
+            <li>Very ugly when data changes</li>
+            <li>Previous and new data seem unrelated</li>
+            <li>It doesn't respect reality</li>
+          </ul>
+        </section>
+        <section data-state="trans-2">
+          <h4>w/o transitions</h4>
+          <div id="trans-id-2" class="ball-canvas">
+            <i class="fa fa-futbol-o"></i>
+          </div><pre><code><div id="trans-id" class="ball-canvas">
+  <i class="fa fa-futbol-o"></i>
+</div></code></pre><pre><code>.ball-canvas { position: relative; }
+.ball-canvas i { position: relative; }</code></pre><pre><code>var myData = [getRandomInt(-400, 400)];
+
+d3
+  .select('#trans-id')
+  .selectAll('i')
+  .data(myData)
+  .style('left', function(d) { return d + 'px'; });</code></pre>
+        </section>
+        <section data-state="trans-3">
+          <h4>With transitions!</h4>
+          <div id="trans-id-3" class="ball-canvas">
+            <i class="fa fa-futbol-o"></i>
+          </div><pre><code><div id="trans-id" class="ball-canvas">
+  <i class="fa fa-futbol-o"></i>
+</div></code></pre><pre><code>var myData = [getRandomInt(-400, 400)];
+
+d3
+  .select('#trans-id')
+  .selectAll('i')
+  .data(myData)
+  .transition()
+  .style('left', function(d) { return d + 'px'; });</code></pre>
+        </section>
+        <section data-state="trans-4">
+          <h4>With transitions, duration and easing!</h4>
+          <div id="trans-id-4" class="ball-canvas">
+            <i class="fa fa-futbol-o"></i>
+          </div><pre><code><div id="trans-id" class="ball-canvas">
+  <i class="fa fa-futbol-o"></i>
+</div></code></pre><pre><code>var myData = [getRandomInt(-400, 400)];
+
+d3
+  .select('#trans-id')
+  .selectAll('i')
+  .data(myData)
+  .transition()
+  .style('left', function(d) { return d + 'px'; })
+  .duration(1300)
+  .ease('elastic');</code></pre>
+        </section>
+        <section data-state="trans-5">
+          <h4>Tween interpolation</h4>
+          <div id="trans-id-5" class="ball-canvas">
+            <i class="fa fa-futbol-o trans"></i>
+          </div><pre><code><div id="trans-id" class="ball-canvas">
+  <i class="fa fa-futbol-o"></i>
+</div></code></pre><pre><code>var myData = [getRandomInt(-400, 400)];
+
+d3
+  .select('#trans-id')
+  .selectAll('i')
+  .data(myData)
+  .transition()
+  .styleTween('transform', function(d, i, a) {
+    var prevTransProp = (d3.select(this).attr('style') || ':').split(':')[1];
+    return d3.interpolateString(prevTransProp, ' translateX('+ d + 'px) rotateZ(' + d * 2 + 'deg)');
+  })
+  .duration(1300)
+  .ease('bounce');</code></pre>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h3>... Not only <code>&lt;div&gt;</code></h3>
+          <ul>
+            <li>We can draw in <code>&lt;canvas&gt;</code></li>
+            <li>And we can edit <code>&lt;svg&gt;</code> HTML tag too!</li>
+          </ul>
+        </section>
+        <section data-state="svg-1">
+          <h4><code>&lt;svg&gt;</code></h4>
+          <div id="svg-id-1"><svg><g class="field"><path></path><text></text></g></svg></div>
+          <pre><code><div id="svg-id-1"><svg><g class="field"><path></path><text></text></g></svg></div></code></pre>
+          <pre><code style="max-height: 300px;">var width = 150;
+var height = 150;
+var maxValue = 100;
+
+d3
+  .select('#svg-id-1')
+  .on('click', refreshData);
+  
+var pi = Math.PI;
+
+var arc = d3.svg.arc()
+      .innerRadius(50)
+      .outerRadius(70)
+      .startAngle(0 * (pi/180)) //converting from degs to radians
+      .endAngle(function(d){return (d.value / maxValue) * 2 * pi;}) //just radians
+
+var svg = d3.select("#svg-id-1").select("svg")
+  .attr("width", width)
+  .attr("height", height);
+
+var field = svg.selectAll(".field")
+  .data([{value: getRandomInt(-maxValue, maxValue)}])
+  .attr("transform", "translate(75,75)");
+
+var path = field
+  .select('path')
+  .attr("class", "path path--background");
+
+var label = field.select("text")
+  .attr("class", "label")
+  .attr("dy", ".35em");
+
+refreshData();
+
+function refreshData() {
+  var myData = getRandomInt(-maxValue, maxValue);
+
+  path
+    .each(function(d) { d.previous = d.value, d.value = myData; })
+    .transition()
+    .ease("elastic")
+    .duration(750)
+    .attrTween("d", arcTween);
+
+  label.text(function (d) {return d.value;})
+}
+
+function arcTween(b) {
+  var i = d3.interpolate({value: b.previous}, b);
+  return function(t) {
+    return arc(i(t));
+  };
+}</code></pre>
+        </section>
+        <section data-state="canvas-1">
+          <h4><code>&lt;canvas&gt;</code></h4>
+          <div id="canvas-id-1"><canvas></canvas></div>
+          <pre><code><div id="canvas-id-1"><canvas></canvas></div></code></pre>
+          <pre><code style="max-height: 300px;">var width = 865;
+var height = 150;
+var minValue = 10;
+var maxValue = 60;
+
+d3
+  .select('#canvas-id-1')
+  .on('click', refreshData);
+
+var canvas = d3.select("#canvas-id-1").select("canvas")
+  .attr("width", width)
+  .attr("height", height);
+
+var context = canvas.node().getContext('2d');
+var dataContainer = d3.select(document.createElement("data-container"));
+
+var scalePosX = d3.scale.linear()
+  .domain([minValue, maxValue]).rangeRound([maxValue / 2, width - maxValue / 2]);
+var scalePosY = d3.scale.linear()
+  .domain([minValue, maxValue]).rangeRound([maxValue / 2, height - maxValue / 2]);
+
+refreshData();
+drawCanvas();
+function refreshData() {
+
+  var myData = [{x: getRandomInt(minValue, maxValue), y: getRandomInt(minValue, maxValue)}];
+  var dataBinding = dataContainer.selectAll('custom-circle').data(myData)
+  dataBinding.enter()
+    .append('custom-circle')
+    .attr('x', width / 2)
+    .attr('y', height / 2)
+
+  dataBinding
+    .transition()
+    .ease("elastic")
+    .duration(2000)
+    .attr('x', function(d) { return scalePosX(d.x); })
+    .attr('y', function(d) { return scalePosY(d.y); })
+    .attr("radius", function(d) {return d.x;})
+    .attr("fillStyle", function(d) {return 'hsl(' + d.x * 10 +', 100%, 60%)'});
+}
+
+function drawCanvas() {
+  requestAnimationFrame(drawCanvas);
+  // clear canvas
+  context.fillStyle = "#fff";
+  context.rect(0,0,canvas.attr("width"),canvas.attr("height"));
+  context.fill();
+
+  var elements = dataContainer.selectAll("custom-circle");
+  elements.each(function(d) {
+    var node = d3.select(this);
+
+    context.beginPath();
+    context.fillStyle = node.attr("fillStyle");
+    context.arc(node.attr("x"), node.attr("y"), node.attr("radius"), 0, 2 * Math.PI);
+    context.fill();
+    context.closePath();
+
+  });
+}</code></pre>
+        </section> 
+      </section>
+      <section>
+        <h1>The end!</h1>
+        <h4>Thank you for your patience!</h4>
+      </section>
+
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" integrity="sha256-RtrB/Bgt7EpDgAWIsLodnrtWCCcUCYtZOnuR6bxpSiM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.12/d3.min.js"></script>
+  <script src="js/reveal.js"></script>
+
+  <script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    var timeDataChange = 500;
+    
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+      margin: 0.05,
+      slideNumber: true,
+
+      transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+      chart: {
+        defaults: {
+
+        },
+        line: {
+          borderColor: ["rgba(20,220,220,.9)", "rgba(255, 29, 0, 0.9)", "rgba(74, 220, 20, 0.9)", "rgba(54, 0, 0, 0.8)"],
+          "borderDash": [[5, 10], [0, 0]],
+          "responsive": true
+        },
+        bar: {
+          backgroundColor: ["rgba(20,220,220,.9)", "rgba(255, 29, 0, 0.9)", "rgba(74, 220, 20, 0.9)", "rgba(54, 0, 0, 0.8)"],
+          "responsive": true
+        },
+        pie: {
+          backgroundColor: [["rgba(0,0,0,.8)", "rgba(220,20,20,.8)", "rgba(20,220,20,.8)", "rgba(220,220,20,.8)", "rgba(20,20,220,.8)"]],
+          "responsive": true
+        },
+        radar: {
+          borderColor: ["rgba(20,220,220,.9)", "rgba(255, 29, 0, 0.9)", "rgba(74, 220, 20, 0.9)", "rgba(54, 0, 0, 0.8)"],
+          scaleShowLine: true,
+          "responsive": true
+        },
+      },
+
+      // Optional reveal.js plugins
+      dependencies: [
+        {
+          src: 'lib/js/classList.js',
+          condition: function () {
+            return !document.body.classList;
+          }
+        },
+        {
+          src: 'plugin/markdown/marked.js',
+          condition: function () {
+            return !!document.querySelector('[data-markdown]');
+          }
+        },
+        {
+          src: 'plugin/markdown/markdown.js',
+          condition: function () {
+            return !!document.querySelector('[data-markdown]');
+          }
+        },
+        {
+          src: 'plugin/highlight/highlight.js',
+          async: true,
+          callback: function () {
+            hljs.initHighlightingOnLoad();
+          }
+        },
+        {
+          src: 'plugin/zoom-js/zoom.js',
+          async: true
+        },
+        {
+          src: 'plugin/notes/notes.js',
+          async: true
+        },
+        {
+          src: 'plugin/chart/Chart.min.js'
+        },
+        {
+          src: 'plugin/chart/csv2chart.js'
+        },
+				]
+    });
+
+    Reveal.addEventListener('audio-live', function () {
+      var ctx = new AudioContext();
+      var audio = document.getElementById('audio-live-src');
+      var audioSrc = ctx.createMediaElementSource(audio);
+      var analyser = ctx.createAnalyser();
+      var sizeAnalyzer = 1024;
+      analyser.fftSize = sizeAnalyzer;
+      // we have to connect the MediaElementSource with the analyser 
+      audioSrc.connect(analyser);
+      audioSrc.connect(ctx.destination);
+      // we could configure the analyser: e.g. analyser.fftSize (for further infos read the spec)
+
+      // frequencyBinCount tells you how many values you'll receive from the analyser
+      var frequencyData = new Uint8Array(analyser.frequencyBinCount);
+      var audioD3 = d3
+        .select('#test-vis');
+
+      // we're ready to receive some data!
+      // loop
+      function renderFrame() {
+        requestAnimationFrame(renderFrame);
+        // update data in frequencyData
+        analyser.getByteFrequencyData(frequencyData);
+        // render frame based on values in frequencyData
+        //console.log(frequencyData)
+        var maxHeight = 400;
+        var y = d3.scale.linear().domain([0, 255]).range([0, maxHeight]);
+        var colorCount = d3.scale.linear().domain([0, frequencyData.length]).rangeRound([0, 255]);
+        var rotateCount = d3.scale.linear().domain([0, frequencyData.length]).rangeRound([0, 360]);
+        
+        var bars = audioD3
+          .selectAll('div')
+          .data(frequencyData);
+        
+        bars
+          .enter()
+          .append('div');
+        
+        bars
+          .style('transform', function (d, i) {
+            return 'translate(0, ' + ((y(d) - maxHeight) / 2) + 'px) rotate(' + (rotateCount(i) + (d - 255) / 255 * 10) + 'deg)';
+          })
+          .style('height', function (d) {
+            return y(d) + 'px';
+          })
+          .style('margin-top', function (d) {
+            return maxHeight - y(d) + 'px';
+          })
+          .style('background-color', function (d, i) {
+            return 'hsla(' + (((d - 255) / 2) + rotateCount(i)) + ', 100%, ' + parseInt((Math.pow(d / 255, 0.6) * 65)) + '%, 0.8)';
+          })
+          .style('width', '1px')
+          .style('position', 'absolute')
+          .style('display', 'inline-block');
+          
+      }
+
+      renderFrame();
+    }, false);
+    
+    Reveal.addEventListener('d3-step-4', function () {
+      var myData = [10, 25, 40];
+      d3
+        .select('#d3-frame-4')
+        .selectAll('i')
+        .data(myData)
+        .style('font-size', function(d) {return d + 'px';})
+    }, false);
+    
+    Reveal.addEventListener('d3-step-4b', function () {
+      var myData = [10, 25, 40];
+      var colorScale = d3.scale.linear()
+        .domain([d3.min(myData), d3.max(myData)])
+        .rangeRound([0, 255]);
+      
+      d3
+        .select('#d3-frame-4b')
+        .selectAll('i')
+        .data(myData)
+        .style('font-size', function(d) {return d + 'px';})
+        .style('color', function(d) {return 'rgb(0, ' + colorScale(d) + ', 0)'; })
+    }, false);
+    
+    Reveal.addEventListener('d3-step-5', function () {
+      var myData = [10, 25, 40, 5, 50, 20, 16, 18, 60, 55, 20];
+      var colorScale = d3.scale.linear()
+        .domain([d3.min(myData), d3.max(myData)])
+        .rangeRound([0, 255]);
+      
+      var stars = d3
+        .select('#d3-frame-5')
+        .selectAll('i')
+        .data(myData);
+      
+      stars.enter()
+        .append('i')
+        .attr('class', 'fa fa-star');
+      
+      stars.exit()
+        .remove();
+      
+      stars
+        .style('font-size', function(d) {return d + 'px';})
+        .style('color', function(d) {return 'rgb(0, ' + colorScale(d) + ', 0)'; });
+    }, false);
+    
+    Reveal.addEventListener('trans-1', function () {
+      
+      d3
+        .select('#trans-id-1')
+        .on('click', refreshData);
+      
+      refreshData();
+      
+      function refreshData() {
+        var myData = [getRandomInt(-400, 400)];
+        
+        d3
+          .select('#trans-id-1')
+          .selectAll('i')
+          .data(myData)
+          .style('left', function(d) { return d + 'px'; });
+      }
+    }, false);
+    
+    Reveal.addEventListener('trans-2', function () {
+      
+      d3
+        .select('#trans-id-2')
+        .on('click', refreshData);
+      
+      refreshData();
+      
+      function refreshData() {
+        var myData = [getRandomInt(-400, 400)];
+        
+        d3
+          .select('#trans-id-2')
+          .selectAll('i')
+          .data(myData)
+          .style('left', function(d) { return d + 'px'; });
+      }
+    }, false);
+    
+    Reveal.addEventListener('trans-3', function () {
+      
+      d3
+        .select('#trans-id-3')
+        .on('click', refreshData);
+      
+      refreshData();
+      
+      function refreshData() {
+        var myData = [getRandomInt(-400, 400)];
+        
+        d3
+          .select('#trans-id-3')
+          .selectAll('i')
+          .data(myData)
+          .transition()
+          .style('left', function(d) { return d + 'px'; });
+      }
+    }, false);
+    
+    Reveal.addEventListener('trans-4', function () {
+      
+      d3
+        .select('#trans-id-4')
+        .on('click', refreshData);
+      
+      refreshData();
+      
+      function refreshData() {
+        var myData = [getRandomInt(-400, 400)];
+        
+        d3
+          .select('#trans-id-4')
+          .selectAll('i')
+          .data(myData)
+          .transition()
+          .style('left', function(d) { return d + 'px'; })
+          .duration(1300)
+          .ease('elastic');
+      }
+    }, false);
+    
+    Reveal.addEventListener('trans-5', function () {
+      
+      d3
+        .select('#trans-id-5')
+        .on('click', refreshData);
+      
+      refreshData();
+      
+      function refreshData() {
+        var myData = [getRandomInt(-400, 400)];
+        
+        d3
+          .select('#trans-id-5')
+          .selectAll('i')
+          .data(myData)
+          .transition()
+          .styleTween('transform', function(d, i, a) {
+            var prevTransProp = (d3.select(this).attr('style') || ':').split(':')[1];
+            return d3.interpolateString(prevTransProp, ' translateX('+ d + 'px) rotateZ(' + d * 2 + 'deg)');
+          })
+          .duration(1300)
+          .ease('bounce');
+      }
+    }, false);
+    
+    Reveal.addEventListener('svg-1', function () {
+      var width = 150;
+      var height = 150;
+      var maxValue = 100;
+      d3
+        .select('#svg-id-1')
+        .on('click', refreshData);
+      var pi = Math.PI;
+      
+      var arc = d3.svg.arc()
+            .innerRadius(50)
+            .outerRadius(70)
+            .startAngle(0 * (pi/180)) //converting from degs to radians
+            .endAngle(function(d){return (d.value / maxValue) * 2 * pi;}) //just radians
+      
+      var svg = d3.select("#svg-id-1").select("svg")
+        .attr("width", width)
+        .attr("height", height);
+      
+      var field = svg.selectAll(".field")
+        .data([{value: getRandomInt(-maxValue, maxValue)}])
+        .attr("transform", "translate(75,75)");
+      
+      var path = field
+        .select('path')
+        .attr("class", "path path--background");
+      
+      var label = field.select("text")
+        .attr("class", "label")
+        .attr("dy", ".35em");
+      
+      refreshData();
+      
+      function refreshData() {
+        var myData = getRandomInt(-maxValue, maxValue);
+        
+        path
+          .each(function(d) { d.previous = d.value, d.value = myData; })
+          .transition()
+          .ease("elastic")
+          .duration(2000)
+          .attrTween("d", arcTween);
+        
+        label.text(function (d) {return d.value;})
+      }
+      
+      function arcTween(b) {
+        var i = d3.interpolate({value: b.previous}, b);
+        return function(t) {
+          return arc(i(t));
+        };
+      }
+    }, false);
+    
+    Reveal.addEventListener('canvas-1', function () {
+      var width = 865;
+      var height = 150;
+      var minValue = 10;
+      var maxValue = 60;
+      
+      d3
+        .select('#canvas-id-1')
+        .on('click', refreshData);
+      
+      var canvas = d3.select("#canvas-id-1").select("canvas")
+        .attr("width", width)
+        .attr("height", height);
+      
+      var context = canvas.node().getContext('2d');
+      var dataContainer = d3.select(document.createElement("data-container"));
+      var scalePosX = d3.scale.linear().domain([minValue, maxValue]).rangeRound([maxValue / 2, width - maxValue / 2]);
+      var scalePosY = d3.scale.linear().domain([minValue, maxValue]).rangeRound([maxValue / 2, height - maxValue / 2]);
+      
+      refreshData();
+      drawCanvas();
+      function refreshData() {
+        
+        var myData = [{x: getRandomInt(minValue, maxValue), y: getRandomInt(minValue, maxValue)}];
+        var dataBinding = dataContainer.selectAll('custom-circle').data(myData)
+        dataBinding.enter()
+          .append('custom-circle')
+          .attr('x', width / 2)
+          .attr('y', height / 2)
+        
+        dataBinding
+          .transition()
+          .ease("elastic")
+          .duration(2000)
+          .attr('x', function(d) { return scalePosX(d.x); })
+          .attr('y', function(d) { return scalePosY(d.y); })
+          .attr("radius", function(d) {return d.x;})
+          .attr("fillStyle", function(d) {return 'hsl(' + d.x * 10 +', 100%, 60%)'});
+      }
+      
+      function drawCanvas() {
+        requestAnimationFrame(drawCanvas);
+        // clear canvas
+        context.fillStyle = "#fff";
+        context.rect(0,0,canvas.attr("width"),canvas.attr("height"));
+        context.fill();
+
+        var elements = dataContainer.selectAll("custom-circle");
+        elements.each(function(d) {
+          var node = d3.select(this);
+
+          context.beginPath();
+          context.fillStyle = node.attr("fillStyle");
+          context.arc(node.attr("x"), node.attr("y"), node.attr("radius"), 0, 2 * Math.PI);
+          context.fill();
+          context.closePath();
+
+        });
+      }
+      
+      
+    }, false);
+    
+    // Returns a random integer between min (included) and max (excluded)
+    // Using Math.round() will give you a non-uniform distribution!
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+  </script>
+
+</body>
+
+</html>
