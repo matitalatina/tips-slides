@@ -5,7 +5,7 @@ const finalOutputAssets = [
 	'css/**/*.css',
 	'js/**',
 	'lib/**',
-	'images/**',
+	'assets/**',
 	'plugin/**',
 	'**.md'
 ];

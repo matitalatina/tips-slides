@@ -1,0 +1,157 @@
+/**
+ * Wavein theme for reveal.js. This is the opposite of the 'black' theme.
+ *
+ * By Mattia Natali, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(../../lib/font/source-sans-pro/source-sans-pro.css);
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+
+$mainColor: #222;
+$headingColor: #222;
+
+$mainFontSize: 38px;
+$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: uppercase;
+$headingFontWeight: 600;
+$linkColor: #e33e25;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$color1: #e33e25;
+$color2: #AB1A25;
+$color3: #002635;
+$color4: #013440;
+$color5: #EFE7BE;
+
+$heading1Size: 2.5em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+section.has-dark-background {
+	&, h1, h2, h3, h4, h5, h6 {
+		color: #fff;
+	}
+}
+
+strong {
+    color: $color2;
+  }
+
+.color-1 {
+  color: $color1;
+}
+
+.color-2 {
+ color: $color2;
+}
+
+.color-3 {
+ color: $color3;
+}
+
+.color-4 {
+ color: $color4;
+}
+
+.color-5 {
+ color: $color5;
+}
+
+// Background generator
+  @mixin bodyBackground() {
+      @include radial-gradient( #eee, #fff );
+  }
+
+.color-change {
+  animation-name: color_change;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate; 
+}
+
+.size-change {
+  animation-name: size_change;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate; 
+}
+
+.spaced {
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+}
+
+.reveal .icon-chooser {
+  margin: 0;
+  
+  i {
+    margin: 0 0.5em;
+  }
+}
+
+.ball-canvas {
+  position: relative;
+  
+  i {
+    position: relative;
+  }
+}
+
+.custom-car {
+  animation: slideOutLeft 1s infinite alternate;
+}
+
+.custom-ball {
+  animation: bounce 1s infinite;
+  display: inline-block;
+}
+
+.custom-ball i {
+  animation: rubberBand 1s 0.2s infinite ease-out;
+}
+
+.custom-ball i.trans {
+  //transform: translateX(0deg)rotateZ(0deg);
+}
+
+.el-selected {
+  box-shadow: 0 0 0px 3px $color2;
+}
+
+.label {
+  font: 24px sans-serif;
+  text-anchor: middle;
+}
+
+
+
+@keyframes color_change {
+	from { color: $color4; }
+	to { color: $color1; }
+}
+
+@keyframes size_change {
+	from { font-size: $mainFontSize; }
+	to { font-size: $heading1Size; }
+}
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
