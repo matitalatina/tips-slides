@@ -15,8 +15,8 @@ html * {
  * GLOBAL STYLES
  *********************************************/
 body {
-  background: #303030;
-  background-color: #303030; }
+  background: #312d2d;
+  background-color: #312d2d; }
 
 .reveal {
   font-family: "Lato", sans-serif;
@@ -274,7 +274,7 @@ body {
  *********************************************/
 @media print {
   .backgrounds {
-    background-color: #303030; } }
+    background-color: #312d2d; } }
 
 .reveal .good-color {
   color: #859900; }
