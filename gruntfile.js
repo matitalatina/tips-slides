@@ -1,5 +1,17 @@
 const sass = require('node-sass');
 
+const finalOutputAssets = [
+	'*.html',
+	'css/**/*.css',
+	'js/**',
+	'lib/**',
+	'images/**',
+	'plugin/**',
+	'**.md'
+];
+
+const distPath = 'dist/';
+
 module.exports = grunt => {
 
 	require('load-grunt-tasks')(grunt);
@@ -114,15 +126,7 @@ module.exports = grunt => {
 
 		zip: {
 			bundle: {
-				src: [
-					'index.html',
-					'css/**',
-					'js/**',
-					'lib/**',
-					'images/**',
-					'plugin/**',
-					'**.md'
-				],
+				src: finalOutputAssets,
 				dest: 'reveal-js-presentation.zip'
 			}
 		},
@@ -158,7 +162,17 @@ module.exports = grunt => {
 			options: {
 				livereload: true
 			}
-		}
+		},
+
+		copy: {
+			main: {
+				expand: true,
+				src: finalOutputAssets,
+				dest: distPath,
+			},
+		},
+
+		clean: [ distPath ],
 
 	});
 
@@ -179,6 +193,9 @@ module.exports = grunt => {
 
 	// Package presentation to archive
 	grunt.registerTask( 'package', [ 'default', 'zip' ] );
+
+	// Package presentation to archive
+	grunt.registerTask( 'build', [ 'clean', 'default', 'copy' ] );
 
 	// Serve presentation locally
 	grunt.registerTask( 'serve', [ 'connect', 'watch' ] );
