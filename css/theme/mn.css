@@ -281,3 +281,15 @@ body {
 
 .reveal .bad-color {
   color: #dc322f; }
+
+.reveal .img-profile {
+  width: 200px;
+  border-radius: 200px; }
+
+.reveal .container-flex {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center; }
+  .reveal .container-flex .col {
+    flex: 1; }
