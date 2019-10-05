@@ -276,8 +276,15 @@ body {
   .backgrounds {
     background-color: #312d2d; } }
 
+.reveal a {
+  text-decoration: underline; }
+
 .reveal .good-color {
   color: #859900; }
+
+.reveal code.code-condensed {
+  font-size: 16px;
+  line-height: 1.1; }
 
 .reveal .bad-color {
   color: #dc322f; }

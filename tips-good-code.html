@@ -1,0 +1,355 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Write code for humans!</title>
+  <meta name="description"
+    content="Stop worrying too much about optimizing the code for the machine. Optimize it for the humans!">
+  <meta name="copyright" content="Mattia Natali">
+  <meta name="author" content="Mattia Natali">
+  <meta name="summary"
+    content="When you write code, remember that: - Someone will review it. - Someone should be able to understand it. - Someone will take inspiration from that. - Someone will build on top of it. It's better to save hours spent by developers
+  instead of milliseconds spent by machines. So stop worrying too much about optimizing it for the machine. Optimize it for humans!">
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/mn.css">
+  <link rel="stylesheet" href="css/theme/code-good.css">
+  <link rel="stylesheet" href="css/theme/code-bad.css">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="lib/css/monokai.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <h1>Tips to write good code</h1>
+      </section>
+      <section>
+        <h2>Focus on content</h2>
+        <ul>
+          <li><strong class="good-color">Code like you're writing a story for someone else</strong> that doesn't know what you're doing</li>
+          <li><strong class="bad-color">Avoid generic variables</strong> (<code>a</code>, <code>b</code>, <code>c</code>), unless the content is obvious</li>
+          <li><strong class="bad-color"></strong>Avoid <code>step1</code>, <code>step2</code>, ... function names</strong>. <strong class="good-color">Make explicit what you're doing</strong></li>
+          <li>A developer should know what your functions do just reading the signature</li>
+        </ul>
+      </section>
+      <section data-background="#3b0f0e">
+          <h3>Focus on content</h3>
+          <h4>This is 💩</h4>
+          <pre>
+              <code class="hljs typescript code-bad" data-trim>
+                // I know it's the first step, and I know it's first result!
+                // I don't understand what first step is!
+                const result1 = doStep1();
+                // 💩 same as before...
+                const result2 = doStep2(result1);
+                // Come on... Get value of what? ...a? 😭
+                // I have to read the function bodies to understand...
+                // Time wasted! 🤬
+                const a = getValue(result2);
+              </code>
+          </pre>
+      </section>
+      <section data-background="#082e00">
+          <h3>Focus on content</h3>
+          <h4>This is 🤩</h4>
+          <pre>
+              <code class="hljs typescript code-good" data-trim>
+                // Ok, now I know that you're extracting data from a UserForm
+                const formData = getUserFormData();
+                // And you're validating it
+                const validationErrors = validate(formData);
+                // And checking if we can recover errors
+                // without user intervention.
+                // I don't have to read anything else! 🍾
+                const shouldAskToUser = shouldPromptToUser(validationErrors);
+              </code>
+          </pre>
+      </section>
+      <section>
+          <h2>Use <a href="https://medium.com/@scadge/if-statements-design-guard-clauses-might-be-all-you-need-67219a1a981a" target="_blank">guards clauses</a></h2>
+          <ul>
+            <li>They <strong class="good-color">improve code readability</strong></li>
+            <li>Assert input as soon as possible, fail fast, <strong class="good-color">then you can focus only on business logic</strong></li>
+            <li>They avoid unnecessary code branching</li>
+          </ul>
+      </section>
+      <section data-background="#3b0f0e">
+          <h3>Use <a href="https://medium.com/@scadge/if-statements-design-guard-clauses-might-be-all-you-need-67219a1a981a" target="_blank">guards clauses</a></h3>
+          <h4>Don't do this</h4>
+          <pre>
+              <code class="hljs typescript code-bad code-condensed" data-trim>
+                function saveCar(Car car, Price price, InvoiceRepo invoiceRepo): Invoice {
+                  if (car.isValid) {
+                    if (price.isBelowThreshold) {
+                      const invoice = prepareInvoice(car, price);
+                      if (invoiceRepo.isAvailable) {
+                        return invoiceRepo.save(invoice);
+                      }
+                      // Else everywhere!!!
+                      else {
+                        throw new InvoiceUnavailableError();
+                      }
+                      // Nesting everywhere 🤯
+                    }
+                    else {
+                      throw new PriceIsTooLowError(price);
+                    }
+                    // My eyes are burning! 😭
+                  } else {
+                    throw new InvalidCarError(car);
+                  }
+                }
+              </code>
+          </pre>
+      </section>
+      <section data-background="#082e00">
+          <h3>Use <a href="https://medium.com/@scadge/if-statements-design-guard-clauses-might-be-all-you-need-67219a1a981a" target="_blank">guards clauses</a></h3>
+          <h4>Do this</h4>
+          <pre>
+              <code class="hljs typescript code-good code-condensed" data-trim>
+                function saveCar(Car car, Price price, InvoiceRepo invoiceRepo): Invoice {
+                  // Guard clauses in action!
+                  if (!car.isValid) {
+                    throw new InvalidCarError(car);
+                  }
+                  if (!price.isBelowThreshold) {
+                    throw new PriceIsTooLowError(price);
+                  }
+                  if (!invoiceRepo.isAvailable) {
+                    throw new InvoiceUnavailableError();
+                  }
+
+                  // And then focus on business logic.
+                  // No nesting, no else, no messy things! 🍾
+                  return invoiceRepo.save(prepareInvoice(car, price));
+                }
+              </code>
+          </pre>
+      </section>
+      <section>
+          <h2>Exploit language features</h2>
+          <ul>
+            <li>Every language has <strong class="good-color">unique features to improve code quality</strong>. Spend time to learn them.</li>
+            <li>You'll write <strong class="good-color">less code</strong> => less bugs, less code to maintain</li>
+            <li>I'll show you some examples from different languages</li>
+          </ul>
+      </section>
+      <section data-background="#3b0f0e">
+          <h3>Exploit language features</h3>
+          <h4>Scala: this is 🤨...</h4>
+          <pre>
+              <code class="hljs scala code-bad" data-trim>
+                val carWithGasolineNames = users.flatMap { user => 
+                  user.cars.withFilter(car => car.hasGasoline)
+                    .map(car => car.name)
+                }
+              </code>
+          </pre>
+      </section>
+      <section data-background="#082e00">
+          <h3>Exploit language features</h3>
+          <h4>Scala: this is 🤩...</h4>
+          <pre>
+              <code class="hljs scala code-good" data-trim>
+                // Same as before, but using for comprehension!
+                val carWithGasolineNames = {
+                  user <- users
+                  car <- user.cars if car.hasGasoline
+                } yield car.name
+              </code>
+          </pre>
+      </section>
+      <section data-background="#3b0f0e">
+          <h3>Exploit language features</h3>
+          <h4>TypeScript / JS: this is 🤨...</h4>
+          <pre>
+              <code class="hljs typescript code-bad" data-trim>
+                const newBook = Object.assign({}, defaultBook);
+                newBook.title = patchBook.title;
+                newBook.description = patchBook.description;
+                newBook.author = patchBook.author;
+                newBook.releasedAt = patchBook.releasedAt;
+                return newBook;
+              </code>
+          </pre>
+      </section>
+      <section data-background="#082e00">
+          <h3>Exploit language features</h3>
+          <h4>TypeScript / JS: this is 🤩...</h4>
+          <pre>
+              <code class="hljs scala code-good" data-trim>
+                // Same as before, but using destructuring...
+                const { title, description, author, releasedAt } = patchBook;
+                // and spread operator!
+                return {
+                  ...defaultBook,
+                  title,
+                  description,
+                  author,
+                  releasedAt,
+                };
+              </code>
+          </pre>
+      </section>
+      <section data-background="#3b0f0e">
+          <h3>Exploit language features</h3>
+          <h4>Dart: this is 🤨...</h4>
+          <pre>
+              <code class="hljs dart code-bad" data-trim>
+                List additionalCars = myFriendCars;
+                if (myFriendCars == null) {
+                  additionalCars = otherFriendCars;
+                }
+                List myFavoriteCars = [];
+                myFavoriteCars.add(ferrari488);
+                myFavoriteCars.add(lamborhiniHuracan);
+                myFavoriteCars.add(lanciaDeltaHFIntegrale);
+                myFavoriteCars.addAll(additionalCars);
+                return myFavoriteCars;
+              </code>
+          </pre>
+      </section>
+      <section data-background="#082e00">
+          <h3>Exploit language features</h3>
+          <h4>Dart: this is 🤩...</h4>
+          <pre>
+              <code class="hljs scala code-good" data-trim>
+                // Same as before, but using cascading operator (..)
+                return []
+                  ..add(ferrari488)
+                  ..add(lamborhiniHuracan)
+                  ..add(lanciaDeltaHFIntegrale)
+                  // and if null operator!
+                  ..addAll(myFriendCars ?? otherFriendCars)
+              </code>
+          </pre>
+      </section>
+
+
+      <section data-background="#3b0f0e">
+        <h3><strong class="bad-color">Machines</strong> prefer this</h3>
+        <h4>Imperative code</h4>
+        <pre>
+            <code class="hljs typescript code-bad" data-trim>
+              let kmOfItalianDrivers = 0;
+
+              for (let i = 0; i < users.length; i++) {
+                if (users[i].country === 'ITALY' &&
+                    users[i].hasDriverLicence &&
+                    users[i].age >= 18) {
+                      for (let j = 0; j < users[i].cars.length; j++) {
+                        kmOfItalianDrivers += users[i].cars[j].km;
+                      }
+                }
+              }
+            
+              return kmOfItalianDrivers;
+            </code>
+            </pre>
+      </section>
+      <section data-background="#082e00">
+        <h3>Why <strong class="good-color">humans</strong> prefer <br>functional programming</h3>
+        <ul>
+          <li>It focuses on <strong>what</strong> you want to achieve</li>
+          <li>Fewer lines of code</li>
+          <li>It encourages code reusability (composing map, flatMap, filter, reduce etc.)</li>
+          <li>It hides implementation details</li>
+        </ul>
+      </section>
+      <section data-background="#3b0f0e">
+        <h3>Why <strong class="bad-color">machines</strong> prefer <br>imperative programming</h3>
+        <ul>
+          <li>It focuses on <strong>how</strong> you want to achieve it</li>
+          <li>You write what the machine should do</li>
+          <li>Better performance (not always)</li>
+        </ul>
+      </section>
+      <section>
+        <h3>When you write code<br>remember:</h3>
+        <ul>
+          <li><strong class="good-color">Someone</strong> will review it</li>
+          <li><strong class="good-color">Someone</strong> should be able to understand it</li>
+          <li><strong class="good-color">Someone</strong> will take inspiration from that</li>
+          <li><strong class="good-color">Someone</strong> will build on top of it</li>
+        </ul>
+      </section>
+      <section>
+        <h3><strong class="bad-color">Hardware</strong> is cheap,<br>
+          <strong class="good-color">developers</strong> are expensive</h3>
+        <ul>
+          <li>
+            It's better to <strong class="good-color">save hours</strong> spent by <strong
+              class="good-color">developers</strong>
+            instead of <strong class="bad-color">milliseconds</strong> spent by <strong
+              class="bad-color">machines</strong>
+          </li>
+          <li>You should <strong class="good-color">help your team building things quickly</strong></li>
+        </ul>
+      </section>
+      <section>
+        <h3>So write <strong class="good-color">human-friendly</strong> code</h3>
+        <ul>
+          <li><strong class="good-color">Functional</strong> programming can help you</li>
+          <li>Your code will be easier to understand and easier to change</li>
+          <li>Your colleagues will appreciate!</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Keep in touch</h2>
+        <div class="container-flex">
+          <div class="col">
+            <img src="assets/img/profile.jpg" class="img-profile">
+          </div>
+          <div class="col">
+            <p><a href="https://www.linkedin.com/in/mattian/" target="_blank"><i class="fa fa-linkedin-square"></i>
+                mattian</a></p>
+            <p><a href="https://github.com/matitalatina/" target="_blank"><i class="fa fa-github"></i> matitalatina</a>
+            </p>
+            <p><a href="https://www.mattianatali.it" target="_blank"><i class="fa fa-link"></i> www.mattianatali.it</a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="js/reveal.js"></script>
+
+  <script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+      width: 960,
+      height: 700,
+      history: true,
+      dependencies: [
+        { src: 'plugin/markdown/marked.js' },
+        { src: 'plugin/markdown/markdown.js' },
+        { src: 'plugin/notes/notes.js', async: true },
+        { src: 'plugin/highlight/highlight.js', async: true }
+      ]
+    });
+    Reveal.configure({ pdfMaxPagesPerSlide: 1 });
+  </script>
+</body>
+
+</html>
