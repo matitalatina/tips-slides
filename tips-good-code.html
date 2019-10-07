@@ -39,7 +39,8 @@
   <div class="reveal">
     <div class="slides">
       <section>
-        <h1>Tips to write good code</h1>
+        <h1>Tips to write <strong class="good-color">good code</strong></h1>
+        <h4>That <strong class="bad-color">you can start applying today</strong></h4>
       </section>
       <section>
         <h2>Focus on content</h2>
@@ -195,7 +196,7 @@
           <h3>Exploit language features</h3>
           <h4>TypeScript / JS: this is 🤩...</h4>
           <pre>
-              <code class="hljs scala code-good" data-trim>
+              <code class="hljs typescript code-good" data-trim>
                 // Same as before, but using destructuring...
                 const { title, description, author, releasedAt } = patchBook;
                 // and spread operator!
@@ -242,6 +243,93 @@
               </code>
           </pre>
       </section>
+      <section>
+          <h2>Ask dependencies from constructor</h2>
+          <ul>
+            <li>You <strong class="good-color">make explicit class dependencies</strong> from beginning</li>
+            <li>You can <strong class="good-color">mock dependencies very easily</strong> in unit tests!</li>
+          </ul>
+      </section>
+      <section data-background="#3b0f0e">
+          <h4>Ask dependencies from constructor</h4>
+          <h5>This is 💩...</h5>
+          <pre>
+              <code class="hljs typescript code-bad" data-trim>
+                assert('BookService should save book', () => {
+                  const book = new Book("id", "title", "description");
+                  new BookService().save(book);
+                  // I can't mock BookRepo dependency...
+                  // It's created inside BookService!
+                  // I have to use real BookRepo and the real DB 😭
+                  expect(new BookRepo().get(book.id)).toEqual(book);
+                });
+              </code>
+          </pre>
+      </section>
+      <section data-background="#082e00">
+          <h4>Ask dependencies from constructor</h4>
+          <h5>This is 🤩</h5>
+          <pre>
+              <code class="hljs typescript code-good" data-trim>
+                  assert('BookService should save book', () => {
+                    const book = new Book("id", "title", "description");
+                    const mockedBookRepo = mock(BookRepo);
+                    // I can pass a mocked BookRepo, test are easier now!
+                    new BookService(mockedBookRepo).save(book);
+                    expect(mockedBookRepo.save).calledOnceWith(book);
+                    // No DB involved, all is mocked 🍾
+                  });
+              </code>
+          </pre>
+      </section>
+      <section>
+          <h2>Avoid negative variables names</h2>
+          <ul>
+            <li>Do not call variables like <code class="bad-color">notFinished, notAllowed</code> or even worse <code class="bad-color">notInvalid</code></li>
+            <li>Use this: <code class="good-color">draft, forbidden, valid</code></li>
+            <li><strong class="bad-color">Negative variable names create unnecessary confusion</strong>, especially when we negate them in code.</li>
+          </ul>
+      </section>
+      <section>
+          <h2>Avoid passing too much parameters</h2>
+          <ul>
+            <li>Use data classes instead</li>
+            <li>Data classes are easier to pass to another function</li>
+            <li>If parameters are strictly correlated, it's better to group them inside class.</li>
+          </ul>
+      </section>
+      <section data-background="#3b0f0e">
+          <h4>Avoid passing too much parameters</h4>
+          <h5>This is 💩...</h5>
+          <pre>
+              <code class="hljs typescript code-bad" data-trim>
+                // To much parameters!
+                function filterBooks(name, description, createFrom,
+                                    createTo, authorEmail) {
+                  // I have to pass to another function
+                  // I have to rewrite them all! 😭
+                  return bookRepo.filter(
+                    name, description, createFrom,
+                    createTo, authorEmail
+                  );
+                }
+              </code>
+          </pre>
+      </section>
+      <section data-background="#082e00">
+          <h4>Avoid passing too much parameters</h4>
+          <h5>This is 🤩</h5>
+          <pre>
+              <code class="hljs typescript code-good" data-trim>
+                  // All parameters are inside bookFilters data class!
+                  function filterBooks(bookFilters) {
+                    // Passing them is much easier now 🍾
+                    return bookRepo.filter(bookFilters);
+                  }
+              </code>
+          </pre>
+      </section>
+      
 
 
       <section data-background="#3b0f0e">
