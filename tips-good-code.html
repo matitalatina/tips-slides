@@ -148,7 +148,7 @@
       <section>
           <h2>Exploit language features</h2>
           <ul>
-            <li>Every language has <strong class="good-color">unique features to improve code quality</strong>. Spend time to learn them.</li>
+            <li><strong class="good-color">Every language has unique features to improve code quality</strong>. Spend time to learn them.</li>
             <li>You'll write <strong class="good-color">less code</strong> => less bugs, less code to maintain</li>
             <li>I'll show you some examples from different languages</li>
           </ul>
@@ -167,7 +167,7 @@
       </section>
       <section data-background="#082e00">
           <h3>Exploit language features</h3>
-          <h4>Scala: this is 🤩...</h4>
+          <h4>Scala: this is 🤩</h4>
           <pre>
               <code class="hljs scala code-good" data-trim>
                 // Same as before, but using for comprehension!
@@ -194,7 +194,7 @@
       </section>
       <section data-background="#082e00">
           <h3>Exploit language features</h3>
-          <h4>TypeScript / JS: this is 🤩...</h4>
+          <h4>TypeScript / JS: this is 🤩</h4>
           <pre>
               <code class="hljs typescript code-good" data-trim>
                 // Same as before, but using destructuring...
@@ -230,7 +230,7 @@
       </section>
       <section data-background="#082e00">
           <h3>Exploit language features</h3>
-          <h4>Dart: this is 🤩...</h4>
+          <h4>Dart: this is 🤩</h4>
           <pre>
               <code class="hljs scala code-good" data-trim>
                 // Same as before, but using cascading operator (..)
@@ -293,8 +293,8 @@
       <section>
           <h2>Avoid passing too much parameters</h2>
           <ul>
-            <li>Use data classes instead</li>
-            <li>Data classes are easier to pass to another function</li>
+            <li>Use <strong class="good-color">data classes</strong> instead</li>
+            <li>Data classes are <strong class="good-color">easier to pass to another function</strong></li>
             <li>If parameters are strictly correlated, it's better to group them inside class.</li>
           </ul>
       </section>
@@ -328,77 +328,6 @@
                   }
               </code>
           </pre>
-      </section>
-      
-
-
-      <section data-background="#3b0f0e">
-        <h3><strong class="bad-color">Machines</strong> prefer this</h3>
-        <h4>Imperative code</h4>
-        <pre>
-            <code class="hljs typescript code-bad" data-trim>
-              let kmOfItalianDrivers = 0;
-
-              for (let i = 0; i < users.length; i++) {
-                if (users[i].country === 'ITALY' &&
-                    users[i].hasDriverLicence &&
-                    users[i].age >= 18) {
-                      for (let j = 0; j < users[i].cars.length; j++) {
-                        kmOfItalianDrivers += users[i].cars[j].km;
-                      }
-                }
-              }
-            
-              return kmOfItalianDrivers;
-            </code>
-            </pre>
-      </section>
-      <section data-background="#082e00">
-        <h3>Why <strong class="good-color">humans</strong> prefer <br>functional programming</h3>
-        <ul>
-          <li>It focuses on <strong>what</strong> you want to achieve</li>
-          <li>Fewer lines of code</li>
-          <li>It encourages code reusability (composing map, flatMap, filter, reduce etc.)</li>
-          <li>It hides implementation details</li>
-        </ul>
-      </section>
-      <section data-background="#3b0f0e">
-        <h3>Why <strong class="bad-color">machines</strong> prefer <br>imperative programming</h3>
-        <ul>
-          <li>It focuses on <strong>how</strong> you want to achieve it</li>
-          <li>You write what the machine should do</li>
-          <li>Better performance (not always)</li>
-        </ul>
-      </section>
-      <section>
-        <h3>When you write code<br>remember:</h3>
-        <ul>
-          <li><strong class="good-color">Someone</strong> will review it</li>
-          <li><strong class="good-color">Someone</strong> should be able to understand it</li>
-          <li><strong class="good-color">Someone</strong> will take inspiration from that</li>
-          <li><strong class="good-color">Someone</strong> will build on top of it</li>
-        </ul>
-      </section>
-      <section>
-        <h3><strong class="bad-color">Hardware</strong> is cheap,<br>
-          <strong class="good-color">developers</strong> are expensive</h3>
-        <ul>
-          <li>
-            It's better to <strong class="good-color">save hours</strong> spent by <strong
-              class="good-color">developers</strong>
-            instead of <strong class="bad-color">milliseconds</strong> spent by <strong
-              class="bad-color">machines</strong>
-          </li>
-          <li>You should <strong class="good-color">help your team building things quickly</strong></li>
-        </ul>
-      </section>
-      <section>
-        <h3>So write <strong class="good-color">human-friendly</strong> code</h3>
-        <ul>
-          <li><strong class="good-color">Functional</strong> programming can help you</li>
-          <li>Your code will be easier to understand and easier to change</li>
-          <li>Your colleagues will appreciate!</li>
-        </ul>
       </section>
       <section>
         <h2>Keep in touch</h2>
