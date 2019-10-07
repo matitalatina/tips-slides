@@ -5,14 +5,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <title>Write code for humans!</title>
+  <title>Tips to write good code</title>
   <meta name="description"
-    content="Stop worrying too much about optimizing the code for the machine. Optimize it for the humans!">
+    content="I want to share some tips that you can start applying today and can change dramatically your code quality">
   <meta name="copyright" content="Mattia Natali">
   <meta name="author" content="Mattia Natali">
   <meta name="summary"
-    content="When you write code, remember that: - Someone will review it. - Someone should be able to understand it. - Someone will take inspiration from that. - Someone will build on top of it. It's better to save hours spent by developers
-  instead of milliseconds spent by machines. So stop worrying too much about optimizing it for the machine. Optimize it for humans!">
+    content="Learning how to write good code is a never-ending story. It takes years because you learn it from trial & errors, coding on real projects. In other words, you learn it from experience at work. Fortunately, there are some tips that you can start applying today and can change dramatically your code quality. I want to share some of them.">
+  <meta property="og:title" content="Tips to write good code" />
+  <meta property="og:description" content="I want to share some tips that you can start applying today and can change dramatically your code quality" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/good-code/title.png" />
+  <meta property="og:url" content="https://slides.mattianatali.it/tips-good-code.html">
+  <meta name="twitter:title" content="Tips to write good code">
+  <meta name="twitter:description" content="I want to share some tips that you can start applying today and can change dramatically your code quality">
+  <meta name="twitter:image" content="assets/good-code/title.png">
+  <meta name="twitter:card" content="assets/good-code/title.png">
 
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/reveal.css">
@@ -291,15 +299,15 @@
           </ul>
       </section>
       <section>
-          <h2>Avoid passing too much parameters</h2>
+          <h2>Avoid passing too many parameters</h2>
           <ul>
             <li>Use <strong class="good-color">data classes</strong> instead</li>
             <li>Data classes are <strong class="good-color">easier to pass to another function</strong></li>
-            <li>If parameters are strictly correlated, it's better to group them inside class.</li>
+            <li>If parameters are strictly correlated, it's better to group them inside class</li>
           </ul>
       </section>
       <section data-background="#3b0f0e">
-          <h4>Avoid passing too much parameters</h4>
+          <h4>Avoid passing too many parameters</h4>
           <h5>This is 💩...</h5>
           <pre>
               <code class="hljs typescript code-bad" data-trim>
@@ -317,7 +325,7 @@
           </pre>
       </section>
       <section data-background="#082e00">
-          <h4>Avoid passing too much parameters</h4>
+          <h4>Avoid passing too many parameters</h4>
           <h5>This is 🤩</h5>
           <pre>
               <code class="hljs typescript code-good" data-trim>
