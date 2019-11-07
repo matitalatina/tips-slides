@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>How to build a solid frontend</title>
+  <meta name="description"
+    content="Stop worrying too much about optimizing the code for the machine. Optimize it for the humans!">
+  <meta name="copyright" content="Mattia Natali">
+  <meta name="author" content="Mattia Natali">
+  <meta name="summary" content="">
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/mn.css">
+  <link rel="stylesheet" href="css/theme/code-good.css">
+  <link rel="stylesheet" href="css/theme/code-bad.css">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="lib/css/monokai.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <h2>How to build a solid frontend</h2>
+        <img class="plain mod-transparent" src="assets/build-frontend/angular.png">
+        <h3>with Angular</h3>
+      </section>
+      <section>
+        <h2>Starting point</h2>
+        <h4>the mockup from your beloved designer</h4>
+      </section>
+      <section>
+        <h3>1. Build smallest UI components (atoms)</h3>
+        <ul>
+          <li>State only for UI purposes</li>
+          <li><code>Inputs</code> must be very generic: <code>label, title, hidden, disabled, item</code></li>
+          <li><code>Outputs</code> must be very generic: <code>clicked, closed, focused</code></li>
+          <li>No models from backend should be used inside</li>
+          <li>Goal: maximize reusability</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Examples atomic UI components</h3>
+        <ul>
+          <li>Button</li>
+          <li>Input</li>
+          <li>ListItem</li>
+        </ul>
+      </section>
+      <section>
+        <h3>2. Build UI components using atoms (molecules)</h3>
+        <ul>
+          <li>State only for UI purposes</li>
+          <li>The data are given from inputs also here (no API calls yet)</li>
+          <li>You should wire atomic components together to build more complex UI</li>
+          <li>Inputs and Outputs are very generic also here</li>
+          <li>Goal: encapsulate UI logic + maximize reusability</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Examples of molecules</h3>
+        <ul>
+          <li>SearchBox</li>
+          <li>List</li>
+          <li>TabsView</li>
+          <li>Menu</li>
+        </ul>
+      </section>
+      <section>
+        <h3>3. Build UI components using molecules (organisms)</h3>
+        <ul>
+          <li>State only for UI purposes</li>
+          <li>No API calls yet</li>
+          <li>Inputs and Outputs are tied also to your models (user, bookings...)</li>
+          <li>Wire atoms and molecules to build UI for your business</li>
+          <li>Goal: encapsulate complex business logic</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Examples of organisms</h3>
+        <ul>
+          <li>UserEditForm</li>
+          <li>BookingList</li>
+          <li>EventCalendar</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Storybook</h3>
+        <h5>to build components "without distractions"</h5>
+        <video autoplay="" muted="" loop="" playsinline="" alt="Storybook demo video" width="70%">
+          <source src="https://storybook.js.org/videos/storybook-hero-video-optimized.mp4" type="video/mp4">
+        </video>
+      </section>
+      <section data-background="#082e00">
+        <h3>Why <strong class="good-color">humans</strong> prefer <br>functional programming</h3>
+        <ul>
+          <li>It focuses on <strong>what</strong> you want to achieve</li>
+          <li>Fewer lines of code</li>
+          <li>It encourages code reusability (composing map, flatMap, filter, reduce etc.)</li>
+          <li>It hides implementation details</li>
+        </ul>
+      </section>
+      <section data-background="#3b0f0e">
+        <h3>Why <strong class="bad-color">machines</strong> prefer <br>imperative programming</h3>
+        <ul>
+          <li>It focuses on <strong>how</strong> you want to achieve it</li>
+          <li>You write what the machine should do</li>
+          <li>Better performance (not always)</li>
+        </ul>
+      </section>
+      <section>
+        <h3>When you write code<br>remember:</h3>
+        <ul>
+          <li><strong class="good-color">Someone</strong> will review it</li>
+          <li><strong class="good-color">Someone</strong> should be able to understand it</li>
+          <li><strong class="good-color">Someone</strong> will take inspiration from that</li>
+          <li><strong class="good-color">Someone</strong> will build on top of it</li>
+        </ul>
+      </section>
+      <section>
+        <h3><strong class="bad-color">Hardware</strong> is cheap,<br>
+          <strong class="good-color">developers</strong> are expensive</h3>
+        <ul>
+          <li>
+            It's better to <strong class="good-color">save hours</strong> spent by <strong
+              class="good-color">developers</strong>
+            instead of <strong class="bad-color">milliseconds</strong> spent by <strong
+              class="bad-color">machines</strong>
+          </li>
+          <li>You should <strong class="good-color">help your team building things quickly</strong></li>
+        </ul>
+      </section>
+      <section>
+        <h3>So write <strong class="good-color">human-friendly</strong> code</h3>
+        <ul>
+          <li><strong class="good-color">Functional</strong> programming can help you</li>
+          <li>Your code will be easier to understand and easier to change</li>
+          <li>Your colleagues will appreciate!</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Keep in touch</h2>
+        <div class="container-flex">
+          <div class="col">
+            <img src="assets/img/profile.jpg" class="img-profile">
+          </div>
+          <div class="col">
+            <p><a href="https://www.linkedin.com/in/mattian/" target="_blank"><i class="fa fa-linkedin-square"></i>
+                mattian</a></p>
+            <p><a href="https://github.com/matitalatina/" target="_blank"><i class="fa fa-github"></i> matitalatina</a>
+            </p>
+            <p><a href="https://www.mattianatali.it" target="_blank"><i class="fa fa-link"></i> www.mattianatali.it</a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="js/reveal.js"></script>
+
+  <script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+      width: 960,
+      height: 700,
+      history: true,
+      dependencies: [
+        { src: 'plugin/markdown/marked.js' },
+        { src: 'plugin/markdown/markdown.js' },
+        { src: 'plugin/notes/notes.js', async: true },
+        { src: 'plugin/highlight/highlight.js', async: true }
+      ]
+    });
+    Reveal.configure({ pdfMaxPagesPerSlide: 1 });
+  </script>
+</body>
+
+</html>

@@ -87,4 +87,8 @@ $selectionBackgroundColor: $orange;
       flex: 1;
     }
   }
+  
+  section img.plain.mod-transparent {
+    background-color: transparent;
+  }
 }
