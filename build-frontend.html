@@ -37,16 +37,17 @@
   <div class="reveal">
     <div class="slides">
       <section>
-        <h2>How to build a solid frontend</h2>
+        <h2>How to build a reusable UI</h2>
         <img class="plain mod-transparent" src="assets/build-frontend/angular.png">
         <h3>with Angular</h3>
       </section>
       <section>
         <h2>Starting point</h2>
-        <h4>the mockup from your beloved designer</h4>
+        <h4>the mockup from our beloved designer</h4>
       </section>
       <section>
-        <h3>1. Build smallest UI components (atoms)</h3>
+        <h3>1. Atoms</h3>
+        <h4>Build smallest UI components</h4>
         <ul>
           <li>State only for UI purposes</li>
           <li><code>Inputs</code> must be very generic: <code>label, title, hidden, disabled, item</code></li>
@@ -64,12 +65,13 @@
         </ul>
       </section>
       <section>
-        <h3>2. Build UI components using atoms (molecules)</h3>
+        <h3>2. Molecules</h3>
+        <h4>Build UI components using atoms</h4>
         <ul>
           <li>State only for UI purposes</li>
-          <li>The data are given from inputs also here (no API calls yet)</li>
-          <li>You should wire atomic components together to build more complex UI</li>
-          <li>Inputs and Outputs are very generic also here</li>
+          <li>The data are given from inputs (no API calls yet)</li>
+          <li>Wire atomic components together to build more complex UI</li>
+          <li>Inputs and Outputs are still very generic</li>
           <li>Goal: encapsulate UI logic + maximize reusability</li>
         </ul>
       </section>
@@ -83,11 +85,12 @@
         </ul>
       </section>
       <section>
-        <h3>3. Build UI components using molecules (organisms)</h3>
+        <h3>3. Organisms</h3>
+        <h4>Build UI components using molecules</h4>
         <ul>
           <li>State only for UI purposes</li>
           <li>No API calls yet</li>
-          <li>Inputs and Outputs are tied also to your models (user, bookings...)</li>
+          <li>You start seeing backend models (user, bookings...) in Inputs and Outputs</li>
           <li>Wire atoms and molecules to build UI for your business</li>
           <li>Goal: encapsulate complex business logic</li>
         </ul>
@@ -101,12 +104,63 @@
         </ul>
       </section>
       <section>
+        <h3>4. Containers</h3>
+        <h4>Add life to organisms!</h4>
+        <ul>
+          <li>No UI here</li>
+          <li>Wrap organisms to add smart components</li>
+          <li>Heavy usage of dependency injection</li>
+          <li>Link your preferred state manager to UI</li>
+          <li>API calls happens here</li>
+          <li>Goal: add business logic to UI</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Examples of container</h3>
+        <ul>
+          <li>&lt;YOUR_ORGANISM&gt;Container</li>
+        </ul>
+      </section>
+      <section>
+        <h3>5. Layouts</h3>
+        <h4>The skeleton of your page</h4>
+        <ul>
+          <li>@ViewChild, @ViewChildren and &lt;ng-content&gt; are your best friends here</li>
+          <li>Goal: reuse common layouts, add consistency to your pages</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Examples of layouts</h3>
+        <ul>
+          <li>TwoColumnsLayout</li>
+          <li>RootLayout (w/ Header and Footer)</li>
+        </ul>
+      </section>
+      <section>
+        <h3>6. Pages</h3>
+        <h4>Link components to Angular Route</h4>
+        <ul>
+          <li>The main wrapper is usually a layout</li>
+          <li>Wrap organisms to add smart components</li>
+          <li>Angular router builds pages</li>
+          <li>Goal: wire angular routes to UI</li>
+        </ul>
+      </section>
+      <section>
         <h3>Storybook</h3>
         <h5>to build components "without distractions"</h5>
         <video autoplay="" muted="" loop="" playsinline="" alt="Storybook demo video" width="70%">
           <source src="https://storybook.js.org/videos/storybook-hero-video-optimized.mp4" type="video/mp4">
         </video>
       </section>
+      <section>
+          <h3>References</h3>
+          <ul>
+            <li><a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0" target="_blank">https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0</a></li>
+            <li><a href="https://medium.com/@tkssharma/understanding-viewchildren-viewchild-contentchildren-and-contentchild-b16c9e0358e" target="_blank">Understanding @ViewChildren, @ViewChild, @ContentChildren and @ContentChild</a></li>
+            <li><a href="https://bradfrost.com/blog/post/atomic-web-design/" target="_blank">Atomic design</a></li>
+          </ul>
+        </section>
       <section data-background="#082e00">
         <h3>Why <strong class="good-color">humans</strong> prefer <br>functional programming</h3>
         <ul>
