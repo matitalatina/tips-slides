@@ -291,7 +291,8 @@ body {
 
 .reveal .img-profile {
   width: 200px;
-  border-radius: 200px; }
+  border-radius: 200px;
+  background-color: transparent; }
 
 .reveal .container-flex {
   display: flex;

@@ -5,12 +5,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <title>How to build a solid frontend</title>
+  <title>How to build a solid UI with Angular</title>
   <meta name="description"
-    content="Stop worrying too much about optimizing the code for the machine. Optimize it for the humans!">
+    content="If you don't know how to organize a frontend code base, these slides can help you!">
   <meta name="copyright" content="Mattia Natali">
   <meta name="author" content="Mattia Natali">
-  <meta name="summary" content="">
+  <meta name="summary" content="If you don't know how to organize a frontend code base, these slides can help you!">
 
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/reveal.css">
@@ -37,27 +37,22 @@
   <div class="reveal">
     <div class="slides">
       <section>
-        <h2>How to build a reusable UI</h2>
+        <h2>How to build a solid UI</h2>
         <img class="plain mod-transparent" src="assets/build-frontend/angular.png">
         <h3>with Angular</h3>
-      </section>
-      <section>
-        <h2>Starting point</h2>
-        <h4>the mockup from our beloved designer</h4>
       </section>
       <section data-background="#3b0f0e">
         <h3 class="color-red">1. Atoms</h3>
         <h4>Build smallest UI components</h4>
         <ul>
-          <li>State only for UI purposes</li>
           <li><code>Inputs</code> must be very generic: <code>label, title, hidden, disabled, item</code></li>
           <li><code>Outputs</code> must be very generic: <code>clicked, closed, focused</code></li>
-          <li>No models from backend should be used inside</li>
-          <li>Goal: maximize reusability</li>
+          <li>No backend models here</li>
+          <li>Goal: <strong class="color-red">maximize reusability</strong></li>
         </ul>
       </section>
       <section data-background="#3b0f0e">
-        <h3>Examples atomic UI components</h3>
+        <h3>Atom examples</h3>
         <ul>
           <li>Button</li>
           <li>Input</li>
@@ -68,15 +63,15 @@
         <h3 class="color-violet">2. Molecules</h3>
         <h4>Build UI components using atoms</h4>
         <ul>
-          <li>State only for UI purposes</li>
+          <li>State for UI purposes only</li>
           <li>The data are given from inputs (no API calls yet)</li>
           <li>Wire atomic components together to build more complex UI</li>
           <li>Inputs and Outputs are still very generic</li>
-          <li>Goal: encapsulate UI logic + maximize reusability</li>
+          <li>Goal: <strong class="color-violet">encapsulate UI logic + maximize reusability</strong></li>
         </ul>
       </section>
       <section data-background="#1d1f33">
-        <h3>Examples of molecules</h3>
+        <h3>Molecule examples</h3>
         <ul>
           <li>SearchBox</li>
           <li>List</li>
@@ -89,14 +84,14 @@
         <h4>Build UI components using molecules</h4>
         <ul>
           <li>State only for UI purposes</li>
-          <li>No API calls yet</li>
-          <li>You start seeing backend models (user, bookings...) in Inputs and Outputs</li>
+          <li><strong class="color-orange">No API calls</strong> yet</li>
+          <li><strong class="color-orange">You start seeing backend models</strong> (user, bookings...) in Inputs and Outputs</li>
           <li>Wire atoms and molecules to build UI for your business</li>
-          <li>Goal: encapsulate complex UI logic</li>
+          <li>Goal: <strong class="color-orange">encapsulate complex UI logic</strong></li>
         </ul>
       </section>
       <section data-background="#331406">
-        <h3>Examples of organisms</h3>
+        <h3>Organism examples</h3>
         <ul>
           <li>UserEditForm</li>
           <li>BookingList</li>
@@ -107,16 +102,16 @@
         <h3 class="color-green">4. Containers</h3>
         <h4>Add life to organisms!</h4>
         <ul>
-          <li>No UI here</li>
-          <li>Wrap UI component to make it smart</li>
+          <li><strong class="color-green">Wrap organisms to make them smart</strong></li>
+          <li>Provide data to organism Inputs: by calling the APIs or linking your state manager</li>
+          <li>React to organism outputs</li>
           <li>Heavy usage of dependency injection</li>
-          <li>Link your preferred state manager to UI</li>
-          <li>API calls happens here</li>
-          <li>Goal: add business logic to UI</li>
+          <li>No UI here</li>
+          <li>Goal: <strong class="color-green">add business logic to UI</strong></li>
         </ul>
       </section>
       <section data-background="#082e00">
-        <h3>Examples of container</h3>
+        <h3>Container examples</h3>
         <ul>
           <li>&lt;YOUR_ORGANISM&gt;Container</li>
         </ul>
@@ -125,12 +120,12 @@
         <h3 class="color-yellow">5. Layouts</h3>
         <h4>The skeleton of your page</h4>
         <ul>
-          <li>@ViewChild, @ViewChildren and &lt;ng-content&gt; are your best friends here</li>
-          <li>Goal: reuse common layouts, add consistency to your pages</li>
+          <li><code>@ViewChild, @ViewChildren and &lt;ng-content&gt;</code> are your best friends here</li>
+          <li>Goal: <strong class="color-yellow">reuse common layouts, add consistency to your pages</strong></li>
         </ul>
       </section>
       <section data-background="#362901">
-        <h3>Examples of layouts</h3>
+        <h3>Layout examples</h3>
         <ul>
           <li>TwoColumnsLayout</li>
           <li>RootLayout (w/ Header and Footer)</li>
@@ -140,13 +135,13 @@
         <h3 class="color-cyan">6. Pages</h3>
         <h4>Link components to Angular Route</h4>
         <ul>
-          <li>The main wrapper is usually a layout</li>
+          <li>The first child is usually a layout</li>
           <li>They are called by Angular router</li>
-          <li>Goal: wire routes to UI</li>
+          <li>Goal: <strong class="color-cyan">wire routes to UI</strong></li>
         </ul>
       </section>
       <section data-background="#0b2926">
-        <h3>Examples of pages</h3>
+        <h3>Page examples</h3>
         <ul>
           <li><code>/events/overview</code> → EventOverviewPage</li>
           <li><code>/users/{id}</code> → EditUserPage</li>
