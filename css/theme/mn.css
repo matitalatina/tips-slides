@@ -303,3 +303,27 @@ body {
 
 .reveal section img.plain.mod-transparent {
   background-color: transparent; }
+
+.reveal .color-yellow {
+  color: #b58900; }
+
+.reveal .color-red {
+  color: #dc322f; }
+
+.reveal .color-orange {
+  color: #cb4b16; }
+
+.reveal .color-magenta {
+  color: #6c71c4; }
+
+.reveal .color-blue {
+  color: #268bd2; }
+
+.reveal .color-violet {
+  color: #6c71c4; }
+
+.reveal .color-cyan {
+  color: #2aa198; }
+
+.reveal .color-green {
+  color: #859900; }

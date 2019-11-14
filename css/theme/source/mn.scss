@@ -33,13 +33,17 @@ $base1:     #a8a8a8;
 $base2:     #eeeeee;
 $base3:     #fcfcfc;
 $yellow:    #b58900;
+$yellowDark:#362901;
 $orange:    #cb4b16;
+$orangeDark:#331406;
 $red:       #dc322f;
 $redDark:   #3b0f0e;
 $magenta:   #d33682;
 $violet:    #6c71c4;
+$violetDark:#1d1f33;
 $blue:      #268bd2;
 $cyan:      #2aa198;
+$cyanDark:  #0b2926;
 $green:     #859900;
 $greenDark: #082e00;
 
@@ -90,5 +94,37 @@ $selectionBackgroundColor: $orange;
   
   section img.plain.mod-transparent {
     background-color: transparent;
+  }
+
+  .color-yellow {
+    color: $yellow;
+  }
+
+  .color-red {
+    color: $red;
+  }
+
+  .color-orange {
+    color: $orange;
+  }
+
+  .color-magenta {
+    color: $violet;
+  }
+
+  .color-blue {
+    color: $blue;
+  }
+
+  .color-violet {
+    color: $violet;
+  }
+
+  .color-cyan {
+    color: $cyan;
+  }
+
+  .color-green {
+    color: $green;
   }
 }
