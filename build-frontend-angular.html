@@ -7,16 +7,26 @@
 
   <title>How to build a solid UI with Angular</title>
   <meta name="description"
-    content="If you don't know how to organize a frontend code base, these slides can help you!">
+    content="Add the atomic design, then add a little bit of the best practices from React world. You get my personal receipt to build a solid UI with Angular!">
   <meta name="copyright" content="Mattia Natali">
   <meta name="author" content="Mattia Natali">
   <meta name="summary" content="If you don't know how to organize a frontend code base, these slides can help you!">
 
+  <meta property="og:title" content="How to build a solid UI with Angular" />
+  <meta property="og:description"
+    content="Add the atomic design, then add a little bit of the best practices from React world. You get my personal receipt to build a solid UI with Angular!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://slides.mattianatali.it/assets/build-frontend-angular/title.png" />
+  <meta property="og:url" content="https://slides.mattianatali.it/build-frontend-angular.html">
+  <meta name="twitter:title" content="Tips to write good code">
+  <meta name="twitter:description"
+    content="Add the atomic design, then add a little bit of the best practices from React world. You get my personal receipt to build a solid UI with Angular!">
+  <meta name="twitter:image" content="assets/build-frontend-angular/title.png">
+  <meta name="twitter:card" content="assets/build-frontend-angular/title.png">
+
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/reveal.css">
   <link rel="stylesheet" href="css/theme/mn.css">
-  <link rel="stylesheet" href="css/theme/code-good.css">
-  <link rel="stylesheet" href="css/theme/code-bad.css">
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
@@ -38,7 +48,7 @@
     <div class="slides">
       <section>
         <h2>How to build a solid UI</h2>
-        <img class="plain mod-transparent" src="assets/build-frontend/angular.png">
+        <img class="plain mod-transparent" src="assets/build-frontend-angular/angular.png">
         <h3>with Angular</h3>
       </section>
       <section data-background="#3b0f0e">
@@ -85,7 +95,8 @@
         <ul>
           <li>State only for UI purposes</li>
           <li><strong class="color-orange">No API calls</strong> yet</li>
-          <li><strong class="color-orange">You start seeing backend models</strong> (user, bookings...) in Inputs and Outputs</li>
+          <li><strong class="color-orange">You start seeing backend models</strong> (user, bookings...) in Inputs and
+            Outputs</li>
           <li>Wire atoms and molecules to build UI for your business</li>
           <li>Goal: <strong class="color-orange">encapsulate complex UI logic</strong></li>
         </ul>
