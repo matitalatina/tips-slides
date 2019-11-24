@@ -1,7 +1,7 @@
 # My slides
 
 This is my repo where I store my tech slides.
-[Live preview here.](https://slides.mattianatali.it/)
+[Live preview here.](https://slides.mattianatali.dev/)
 
 ## Dependencies
 
