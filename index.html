@@ -19,25 +19,16 @@
     gtag('config', 'UA-81893752-4');
   </script>
 
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/reveal.css">
-  <link rel="stylesheet" href="css/theme/mn.css">
-  <link rel="stylesheet" href="css/theme/code-good.css">
-  <link rel="stylesheet" href="css/theme/code-bad.css">
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/mn.css">
+  <link rel="stylesheet" href="dist/theme/code-good.css">
+  <link rel="stylesheet" href="dist/theme/code-bad.css">
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
   <!-- Theme used for syntax highlighting of code -->
-  <link rel="stylesheet" href="lib/css/monokai.css">
-
-  <!-- Printing and PDF exports -->
-  <script>
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.type = 'text/css';
-    link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
-    document.getElementsByTagName('head')[0].appendChild(link);
-  </script>
+  <link rel="stylesheet" href="plugin/highlight/monokai.css">
 </head>
 
 <body>
@@ -84,7 +75,10 @@
     </div>
   </div>
 
-  <script src="js/reveal.js"></script>
+  <script src="dist/reveal.js"></script>
+  <script src="plugin/notes/notes.js"></script>
+  <script src="plugin/markdown/markdown.js"></script>
+  <script src="plugin/highlight/highlight.js"></script>
 
   <script>
     // More info about config & dependencies:
@@ -93,12 +87,7 @@
     Reveal.initialize({
       width: 960,
       height: 700,
-      dependencies: [
-        { src: 'plugin/markdown/marked.js' },
-        { src: 'plugin/markdown/markdown.js' },
-        { src: 'plugin/notes/notes.js', async: true },
-        { src: 'plugin/highlight/highlight.js', async: true }
-      ]
+      plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
     });
     Reveal.configure({ pdfMaxPagesPerSlide: 1 });
   </script>

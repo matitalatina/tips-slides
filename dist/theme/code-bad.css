@@ -6,28 +6,28 @@ Monokai style - ported by Luigi Maselli - http://grigio.org
   overflow-x: auto;
   padding: 0.5em;
   background: #3b0f0e;
-  color: #e7e7e7; }
-
+  color: #e7e7e7;
+}
 .code-bad .hljs-tag,
 .code-bad .hljs-keyword,
 .code-bad .hljs-selector-tag,
 .code-bad .hljs-literal,
 .code-bad .hljs-strong,
 .code-bad .hljs-name {
-  color: #f92626; }
-
+  color: #f92626;
+}
 .code-bad .hljs-code {
-  color: #ef6666; }
-
+  color: #ef6666;
+}
 .code-bad .hljs-class .hljs-title {
-  color: white; }
-
+  color: white;
+}
 .code-bad .hljs-attribute,
 .code-bad .hljs-symbol,
 .code-bad .hljs-regexp,
 .code-bad .hljs-link {
-  color: #802c2c; }
-
+  color: #802c2c;
+}
 .code-bad .hljs-string,
 .code-bad .hljs-bullet,
 .code-bad .hljs-subst,
@@ -43,14 +43,14 @@ Monokai style - ported by Luigi Maselli - http://grigio.org
 .code-bad .hljs-variable,
 .code-bad .hljs-template-tag,
 .code-bad .hljs-template-variable {
-  color: #e22e2e; }
-
+  color: #e22e2e;
+}
 .code-bad .hljs-comment,
 .code-bad .hljs-quote,
 .code-bad .hljs-deletion,
 .code-bad .hljs-meta {
-  color: #75715e; }
-
+  color: #75715e;
+}
 .code-bad .hljs-keyword,
 .code-bad .hljs-selector-tag,
 .code-bad .hljs-literal,
@@ -59,4 +59,5 @@ Monokai style - ported by Luigi Maselli - http://grigio.org
 .code-bad .hljs-section,
 .code-bad .hljs-type,
 .code-bad .hljs-selector-id {
-  font-weight: bold; }
+  font-weight: bold;
+}

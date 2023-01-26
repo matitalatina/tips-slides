@@ -128,8 +128,8 @@ Here's a barebones example of a fully working reveal.js presentation:
 ```html
 <html>
 	<head>
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/white.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/white.css">
 	</head>
 	<body>
 		<div class="reveal">
@@ -138,7 +138,7 @@ Here's a barebones example of a fully working reveal.js presentation:
 				<section>Slide 2</section>
 			</div>
 		</div>
-		<script src="js/reveal.js"></script>
+		<script src="dist/reveal.js"></script>
 		<script>
 			Reveal.initialize();
 		</script>
@@ -919,7 +919,7 @@ Reveal.addEventListener( 'fragmenthidden', function( event ) {
 
 ### Code Syntax Highlighting
 
-By default, Reveal is configured with [highlight.js](https://highlightjs.org/) for code syntax highlighting. To enable syntax highlighting, you'll have to load the highlight plugin ([plugin/highlight/highlight.js](plugin/highlight/highlight.js)) and a highlight.js CSS theme (Reveal comes packaged with the Monokai themes: [lib/css/monokai.css](lib/css/monokai.css)).
+By default, Reveal is configured with [highlight.js](https://highlightjs.org/) for code syntax highlighting. To enable syntax highlighting, you'll have to load the highlight plugin ([plugin/highlight/highlight.js](plugin/highlight/highlight.js)) and a highlight.js CSS theme (Reveal comes packaged with the Monokai themes: [plugin/highlight/monokai.css](plugin/highlight/monokai.css)).
 
 ```javascript
 Reveal.initialize({
@@ -1152,7 +1152,7 @@ The framework comes with a few different themes included:
 Each theme is available as a separate stylesheet. To change theme you will need to replace **black** below with your desired theme name in index.html:
 
 ```html
-<link rel="stylesheet" href="css/theme/black.css" id="theme">
+<link rel="stylesheet" href="dist/theme/black.css" id="theme">
 ```
 
 If you want to add a theme of your own see the instructions here: [/css/theme/README.md](https://github.com/hakimel/reveal.js/blob/master/css/theme/README.md).
