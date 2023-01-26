@@ -269,20 +269,30 @@ gulp.task('default', gulp.series(gulp.parallel('js', 'css', 'plugins'), 'test'))
 
 gulp.task('build', gulp.parallel('js', 'css', 'plugins'))
 
+const srcAssets = gulp.src(
+    [
+        './*.html',
+        './dist/**',
+        './lib/**',
+        './images/**',
+        './plugin/**',
+        './assets/**',
+        './**/*.md'
+    ],
+    { base: './' }
+)
+
 gulp.task('package', gulp.series(() =>
 
-    gulp.src(
-        [
-            './index.html',
-            './dist/**',
-            './lib/**',
-            './images/**',
-            './plugin/**',
-            './**/*.md'
-        ],
-        { base: './' }
-    )
-    .pipe(zip('reveal-js-presentation.zip')).pipe(gulp.dest('./'))
+    srcAssets
+        .pipe(zip('reveal-js-presentation.zip')).pipe(gulp.dest('./'))
+
+))
+
+gulp.task('website', gulp.series(() =>
+
+    srcAssets
+        .pipe(gulp.dest('./public'))
 
 ))
 
